@@ -4,6 +4,7 @@ interface GarageHeaderProps {
   activeTab: 'showcase' | 'dyno' | 'tuning' | 'blueprints' | 'validator' | 'cartography' | 'heritage';
   onSelectTab: (tab: 'showcase' | 'dyno' | 'tuning' | 'blueprints' | 'validator' | 'cartography' | 'heritage') => void;
   onOpenConfigure: () => void;
+  onOpenGeminiQr: () => void;
   soundEnabled: boolean;
   onToggleSound: () => void;
 }
@@ -12,6 +13,7 @@ export const GarageHeader: React.FC<GarageHeaderProps> = ({
   activeTab,
   onSelectTab,
   onOpenConfigure,
+  onOpenGeminiQr,
   soundEnabled,
   onToggleSound,
 }) => {
@@ -103,8 +105,19 @@ export const GarageHeader: React.FC<GarageHeaderProps> = ({
         </button>
       </nav>
 
-      {/* Zone 3: 1 primary action */}
+      {/* Zone 3: Actions */}
       <div className="flex items-center gap-3 shrink-0">
+        <button
+          onClick={onOpenGeminiQr}
+          title="Scan QR Code to open official Gemini portal"
+          className="px-3 py-2 text-xs font-semibold uppercase tracking-wider rounded border border-cyan-500/40 bg-cyan-950/30 hover:bg-cyan-900/40 text-cyan-300 transition cursor-pointer whitespace-nowrap flex items-center gap-1.5"
+        >
+          <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M3 3h8v8H3V3zm2 2v4h4V5H5zm8-2h8v8h-8V3zm2 2v4h4V5h-4zM3 13h8v8H3v-8zm2 2v4h4v-4H5zm13-2h3v2h-3v-2zm-5 5h2v3h-2v-3zm5 0h3v3h-3v-3zm-2-3h2v2h-2v-2zm-3-2h3v2h-3v-2z"/>
+          </svg>
+          <span className="hidden sm:inline">Gemini QR</span>
+        </button>
+
         <button
           onClick={onToggleSound}
           title={soundEnabled ? 'Mute V8 Engine Audio' : 'Start V8 Engine Audio'}

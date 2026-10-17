@@ -1,36 +1,39 @@
-# Cartographic GIS & Cyan Terminal Payload Validator Update
+# Gemini Enterprise Portal QR Code Badge
 
-An enhancement incorporating the user's cyan terminal styling for the Payload Validator and adding an interactive Cartographic KML & Coordinate Reference Inspector.
+An interactive QR code badge and modal dialog linking directly to the official Google Gemini portal (`https://gemini.google.com`), rendered as an in-browser SVG QR code for mobile scanning and quick web access.
 
 ## User Review & Critical Decisions
 
 > [!IMPORTANT]
-> The Cartography and GIS tooling operates strictly as an in-browser coordinate converter and KML structure validator for research visualization, as stated in the proposed research role notes.
+> The QR code links directly to the official, public Google Gemini web portal (`https://gemini.google.com`). It is rendered using an in-browser vector SVG generator, requiring zero external tracking or third-party image endpoints.
 
-- **Confirmed Decision 1**: Apply the exact cyan terminal layout, high-contrast borders (`#111622`, `border-gray-800`, `text-cyan-400`), and GovInfo/Custom presets provided by the user.
-- **Confirmed Decision 2**: Integrate a Cartographic KML & Coordinate Converter tab to validate KML placemarks (such as the 89005 Boulder City reference) and perform WGS 84 to UTM Zone 11N conversions client-side.
-- **Zero-Pill & Legibility Discipline**: Clean monospace readouts, clear schema pass/fail badges, and one-click clipboard copying.
+- **Confirmed Decision (Phase 1)**: Display an interactive QR code badge linking to the official Gemini portal.
+- **Placement & Accessibility**: A discreet, clean utility badge in the top navigation bar (`Gemini Portal`) that opens an accessible modal with:
+  1. High-resolution vector QR code optimized for mobile camera scanning.
+  2. Direct destination URL (`https://gemini.google.com`).
+  3. One-click "Copy URL" button and "Open in New Tab" link.
+- **Styling**: Aligned with the application's obsidian and cyan palette (`#0B0F17`, `#111622`, `border-gray-800`), ensuring sharp contrast and instant camera recognition.
 
 ---
 
 ## 1. Overview & Core Concept
 
-- **What It Does**:
-  1. **Cyan Terminal Payload Validator**: Exact drop-in enhancement of `PayloadValidator.tsx` matching the user's custom design with byte-counter, Web Crypto SHA-256 digest, GovInfo preset, and schema audit checklist.
-  2. **Cartographic Coordinate Inspector**: An interactive GIS utility converting latitude/longitude (WGS 84 / EPSG:4326) to UTM Zone 11N (EPSG:32611) easting/northing meters, and validating KML XML trees.
-- **Target Persona**: Developers and research planners analyzing public API metadata and cartographic coordinate files.
+- **What It Does**: Provides users with a clear, scan-ready QR code badge and modal dialog to quickly transition between desktop workstations and mobile devices or field tablets when visiting the official Gemini portal.
+- **Target Audience**: Users operating across multiple devices who need immediate mobile pairing and access to Google Gemini.
+- **Key Value**: Delivers instantaneous QR generation and direct portal linking without third-party redirects or network latency.
 
 ---
 
 ## 2. User Experience & Visual Design
 
-- **Visual Direction**: High-contrast cyber-obsidian terminal aesthetic:
-  - Background: Deep obsidian (`#0B0F17`) and slate cards (`#111622`).
-  - Text: Luminous cyan (`text-cyan-400`), subtle gray metadata (`text-gray-400`), and green pass indicators (`text-green-400`).
-  - Typography: Monospace (`JetBrains Mono`, `font-mono`) with tabular figures.
-- **Key User Flows**:
-  - Load GovInfo or Custom preset -> instantaneous SHA-256 computation via Web Crypto API -> schema key audit -> format/beautify JSON.
-  - Switch to Cartography tab -> view sample 89005 KML placemark -> convert coordinates to UTM 11N meters -> export JSON provenance record.
+- **User Flow**:
+  1. User clicks the **Gemini Portal** button in the header toolbar.
+  2. An elegant modal dialog appears displaying a crisp, high-contrast QR code centered on a clean white inset background (ensuring optimal camera readability).
+  3. User scans with any standard phone/tablet camera or clicks the "Open Portal" link.
+- **Design Tokens**:
+  - Modal Background: `#0E131F` with backdrop blur.
+  - QR Container: Crisp white background (`#FFFFFF`) with quiet 16px padding to ensure rapid camera detection.
+  - Typography: Monospace destination readout with copy status indicator.
 
 ---
 
@@ -38,26 +41,22 @@ An enhancement incorporating the user's cyan terminal styling for the Payload Va
 
 ```
 ┌───────────────────────────────────────────────────────────────┐
-│               CYAN TERMINAL PAYLOAD & GIS ENGINE              │
+│                    DESERT RACING GARAGE                       │
 │                                                               │
 │   ┌───────────────────────────────────────────────────────┐   │
-│   │ Top Bar: Brand · Nav Links · [Configure Build]        │   │
+│   │ Top Bar: Brand · Nav Links · [Gemini Portal QR] · CTA │   │
 │   └───────────────────────────────────────────────────────┘   │
 │                                                               │
-│   ┌─────────────────────────────┬─────────────────────────┐   │
-│   │ Source Payload Editor       │ Integrity & Schema      │   │
-│   │                             │                         │   │
-│   │ · Cyan Monospace Textarea   │ · SHA-256 Digest Box    │   │
-│   │ · Byte Size Counter         │ · Required Keys Audit   │   │
-│   │ · Beautify / Minify Tool    │ · [Copy Hash] Action    │   │
-│   └─────────────────────────────┴─────────────────────────┘   │
-│                                                               │
 │   ┌───────────────────────────────────────────────────────┐   │
-│   │ Parsed Metadata Schema Readout / Cartographic Viewer  │   │
+│   │ [Modal Overlay]: Gemini Portal QR Badge               │   │
+│   │                                                       │   │
+│   │ · High-Contrast Vector SVG QR Code                    │   │
+│   │ · Target URL: https://gemini.google.com               │   │
+│   │ · [Copy Link] · [Open in New Window] · [Close]        │   │
 │   └───────────────────────────────────────────────────────┘   │
 └───────────────────────────────────────────────────────────────┘
 ```
 
-- **Components Modified / Added**:
-  - `PayloadValidator.tsx`: Updated with the exact cyan terminal layout and schema audit checklist.
-  - `CartographyHelper.tsx`: GIS coordinate converter (WGS84 -> UTM 11N) and KML structure viewer.
+- **Core Components**:
+  - `GeminiQrModal.tsx`: Generates the vector QR matrix and renders the modal dialog with scanner instructions and copy actions.
+  - `GarageHeader.tsx`: Houses the top bar trigger button.

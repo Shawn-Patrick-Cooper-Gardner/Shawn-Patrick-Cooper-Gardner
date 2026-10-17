@@ -9,6 +9,7 @@ import { PayloadValidator } from './components/PayloadValidator';
 import { CartographyHelper } from './components/CartographyHelper';
 import { RaceHeritage } from './components/RaceHeritage';
 import { SpecSheetModal } from './components/SpecSheetModal';
+import { GeminiQrModal } from './components/GeminiQrModal';
 import { audioEngine } from './services/AudioEngine';
 
 export const App: React.FC = () => {
@@ -16,6 +17,7 @@ export const App: React.FC = () => {
   const [selectedVehicleId, setSelectedVehicleId] = useState<string>(VEHICLES[0].id);
   const [tuning, setTuning] = useState<TuningConfig>(DEFAULT_TUNING);
   const [isSpecModalOpen, setIsSpecModalOpen] = useState<boolean>(false);
+  const [isGeminiQrOpen, setIsGeminiQrOpen] = useState<boolean>(false);
   const [soundEnabled, setSoundEnabled] = useState<boolean>(false);
   const [isRevving, setIsRevving] = useState<boolean>(false);
 
@@ -69,6 +71,7 @@ export const App: React.FC = () => {
         activeTab={activeTab}
         onSelectTab={setActiveTab}
         onOpenConfigure={() => setIsSpecModalOpen(true)}
+        onOpenGeminiQr={() => setIsGeminiQrOpen(true)}
         soundEnabled={soundEnabled}
         onToggleSound={handleToggleSound}
       />
@@ -121,6 +124,12 @@ export const App: React.FC = () => {
         tuning={tuning}
         isOpen={isSpecModalOpen}
         onClose={() => setIsSpecModalOpen(false)}
+      />
+
+      {/* Gemini Enterprise Portal QR Modal */}
+      <GeminiQrModal
+        isOpen={isGeminiQrOpen}
+        onClose={() => setIsGeminiQrOpen(false)}
       />
 
       {/* Quiet Footer */}
