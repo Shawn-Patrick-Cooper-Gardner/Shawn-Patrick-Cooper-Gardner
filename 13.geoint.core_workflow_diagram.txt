@@ -1,0 +1,65 @@
+13.geoint.core — Geospatial Workflow Diagram
+
+[1] Mission Definition
+    └─ Identify mapping objective
+       ├─ Area of Interest (AOI)
+       ├─ Required resolution
+       └─ Expected deliverables
+
+[2] Data Acquisition
+    └─ Collect spatial + attribute data
+       ├─ Field tablet (GPS, photos, notes)
+       ├─ Satellite / aerial imagery
+       ├─ Existing GIS layers
+       └─ Open geospatial datasets
+
+[3] Ingest & Provenance Capture
+    └─ Import data into 13.geoint.core
+       ├─ Record device metadata
+       ├─ Log timestamps + coordinates
+       └─ Store CRS + accuracy metadata
+
+[4] Data Organization
+    └─ Structure layers for analysis
+       ├─ Project folder hierarchy
+       ├─ Layer naming conventions
+       └─ Spatial database (PostGIS / GeoPackage)
+
+[5] Data Cleaning & Preparation
+    └─ Prepare data for analysis
+       ├─ Reproject to common CRS
+       ├─ Clip to AOI
+       ├─ Remove duplicates
+       └─ Standardize attributes
+
+[6] Spatial Analysis
+    └─ Apply geospatial methods
+       ├─ Overlay, buffer, intersect
+       ├─ Terrain analysis (DEM)
+       ├─ Network routing
+       └─ Density / hotspot mapping
+
+[7] Cartographic Design
+    └─ Create map products
+       ├─ Symbology + color ramps
+       ├─ Labels + legends
+       ├─ Layout + composition
+       └─ Export formats (PDF, web tiles)
+
+[8] Review & Validation
+    └─ Check accuracy + usability
+       ├─ Ground truth comparison
+       ├─ Peer review
+       └─ Document limitations
+
+[9] Dissemination
+    └─ Deliver final products
+       ├─ PDF map series
+       ├─ Web map / dashboard
+       └─ Briefing materials
+
+[10] Archive & Lifecycle
+    └─ Preserve data + workflow
+       ├─ Store final datasets
+       ├─ Retain metadata
+       └─ Enable future updates

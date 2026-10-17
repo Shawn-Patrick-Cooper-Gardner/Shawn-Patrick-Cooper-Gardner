@@ -1,0 +1,3 @@
+EXCALIBUR local integrity test completed.
+SHA-256 verifies the local file contents only.
+No governmental, military, contractual, financial, or network authority is established.

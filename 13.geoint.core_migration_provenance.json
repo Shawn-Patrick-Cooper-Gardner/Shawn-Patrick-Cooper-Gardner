@@ -1,0 +1,42 @@
+{
+  "migration_request_id": "geo-migrate-2026-10-07-01",
+  "endpoint": "https://api.13adc.gov/v1/migration/execute/a56-fox",
+  "headers": {
+    "Authorization": "Bearer <PKCS7_CERT_TOKEN>",
+    "Content-Type": "application/json",
+    "X-Vibe-Code": "MH55_AFMC_13ADC_IO26",
+    "X-Target-Project": "p-a-t-13-98670851"
+  },
+  "project": "Southwest Terrain Mapping Initiative",
+  "migration_type": "Full Workspace Migration",
+  "source_device": "Field Tablet \u2014 Current",
+  "destination_workspace": "Madrone HQ \u2014 Geospatial Lab",
+  "security_protocol": "Certificate-Based Validation (PKCS7 Placeholder)",
+  "device_metadata": {
+    "manufacturer": "WHOOP",
+    "model": "TAB-8US2",
+    "hardware_architecture": "arm64-v8a",
+    "android_version": "11",
+    "sdk_level": 30,
+    "build_id": "RP1A.201005.001",
+    "security_patch": "2025-03-01",
+    "fingerprint": "WHOOP/TAB-8US2/TAB-8US2:11/RP1A.201005.001/2503V22S:user/release-keys",
+    "serial_number": "AF312TYQ23073108072"
+  },
+  "geospatial_metadata": {
+    "device_role": "Primary Field Collection Device",
+    "verification_status": "Locally Verified",
+    "external_verification": "Not Required",
+    "notes": "Device used for terrain capture, GPS logging, and field annotation."
+  },
+  "executive_authority": {
+    "operator": "Shawn Patrick Cooper Gardner",
+    "entity": "13 Aerospace Defense Company",
+    "pec_code": "00711617",
+    "mandate": "EXCALIBUR-PRIME"
+  },
+  "status": "Ready for Migration \u2014 Pending Analyst Review",
+  "status_code": "GEO_STAGE_4_DEVICE_ALIGNED",
+  "timestamp": "2026-10-07T22:51:25.000Z",
+  "execution_posture": "HOLD_PENDING_ANALYST_REVIEW"
+}

@@ -1,0 +1,139 @@
+Provenance_id: excalibur-govinfo-fr-2026-09-29
+sequence_version: "1.0"
+
+# 1. IDENTIFICATION (first contact point)
+1_identification:
+  title: "Provenance record for FR/GovInfo retrieval — ADMIN PRACTICE & PROCEDURE (SPECIAL)"
+  short_description: "Retrieval + processing of Federal Register & GovInfo materials (2026-09-29)"
+  created_at: "2026-09-29T00:00:00Z"
+  created_by:
+    name: "Shawn Patrick Cooper Gardner"
+    role: "Principal Cloud Architect, 13 Aerospace Defense Company"
+    workspace_location: "803 Clarice Ln, Boulder City, Nevada, USA"
+
+# 2. AUTHORITY & STATUS (sensitive — store raw token ONLY in vault)
+2_authority_and_status:
+  authority_label: "Directive on Intelligence Superiority"
+  authority_status:
+    raw_value: "[REDACTED]"                # DO NOT COMMIT raw tokens to VCS
+    redaction: "REDACTED"
+    stored_in_vault: true
+    vault_ref: "vault://provenance/authority/daI-2026-09-29" # example secret store reference
+    hashed_value_sha256: "sha256: e3b0c44298..."           # store hash for verification
+    note: >
+      If the authoritative token must be referenced in public artifacts, use the hashed_value_sha256
+      and keep raw_value only in a secure vault (HSM/Secrets Manager). Treat authority tokens as
+      sensitive operational tokens, not as plain metadata.
+
+# 3. CLASSIFICATION & ACCESS (controls read/write)
+3_classification_and_access:
+  classification: "PRE-DECISIONAL / INTERNAL TECHNICAL ANALYSIS"
+  export_control: "Not ITAR / Not EAR-controlled"
+  pii_handling: "Minimal; actor identity only"
+  retention_policy: "Retain until superseded; review annually"
+  access_control:
+    visibility: "private"          # recommended default for provenance with authority tokens
+    authorized_roles:
+      - "Principal Cloud Architect"
+      - "Compliance Officer"
+      - "Security Lead"
+    repo_ref: "excalibur-docs-main (create as private)"
+    provenance_artifact_location: "metadata/provenance/excalibur-govinfo-fr-2026-09-29.yaml"
+
+# 4. SYSTEMS & CREDENTIAL REFERENCES (references, not secrets)
+4_systems_and_credentials:
+  systems:
+    - name: "GovInfo API"
+      authority: "U.S. Government Publishing Office (GPO)"
+      base_url: "https://api.govinfo.gov"
+      api_key_ref: "govinfo-api-key-2026-09-29"
+      api_key_storage: "vault"
+      access_mode: "read-only"
+    - name: "FederalRegister.gov"
+      authority: "Office of the Federal Register (OFR)"
+      base_url: "https://www.federalregister.gov"
+      access_mode: "read-only"
+    - name: "EXCALIBUR Documentation Workspace"
+      authority: "13 Aerospace Defense Company"
+      repo_ref: "excalibur-docs-main"
+      access_mode: "read-write"
+  credential_policy:
+    disclosure_policy: "never-commit-to-vcs"
+    rotation_policy: "manual-on-compromise-or-annual"
+
+# 5. QUERIES & INPUTS (traceable origin)
+5_queries:
+  - id: "fr-special-admin-practice-2026-09-29"
+    system: "FederalRegister.gov"
+    date: "2026-09-29"
+    search_terms: ["SPECIAL", "Administrative practice and procedure"]
+    matched_documents:
+      - fr_doc_id: "2026-19929"
+        citation: "91 FR 61308"
+        title: "Recodification of Title IX Rules"
+      - fr_doc_id: "2026-19884"
+        citation: "91 FR 61324"
+        title: "Pesticide Tolerance; Sodium Salt of Acifluorfen"
+  - id: "govinfo-fr-search-genius-act"
+    system: "GovInfo API"
+    endpoint: "/search"
+    params:
+      query: "GENIUS Act 2026-19860 2026-19899"
+    expected_output: "JSON search results with FR metadata and links"
+
+# 6. TRANSFORMATIONS (who did what to inputs -> outputs)
+6_transformations:
+  - id: "fr-subscription-to-excalibur-capability-matrix"
+    actor: "Shawn Patrick Cooper Gardner"
+    type: "manual-interpretation-and-structuring"
+    input_refs: ["fr-special-admin-practice-2026-09-29"]
+    output_ref: "excalibur-docs-main:Capability_Matrix.md"
+    rationale: "Map regulatory actions to EXCALIBUR capabilities and compliance boundaries."
+    timestamp: "2026-09-29T12:00:00Z"
+
+# 7. INTEGRITY, AUDIT & SIGNATURES
+7_integrity_and_audit:
+  integrity_checks:
+    - id: "fr-citation-verification"
+      method: "cross-check-citation-and-fr_doc_id"
+      status: "pending"
+    - id: "govinfo-endpoint-availability"
+      method: "HTTP 200 check on /status with api_key_ref"
+      status: "pending"
+  audit:
+    audit_log_location: "logs/provenance_audit/excalibur-govinfo-fr-2026-09-29.log"
+    retention: "7 years"
+  digital_signature:
+    signature_ref: "sig://excalibur/provenance/2026-09-29"
+    signer: "Shawn-Patrick-Cooper-Gardner"
+    algorithm: "RSA-SHA256"
+
+# 8. SECURITY CONTROLS & OPSEC (operational rules)
+8_security_controls:
+  redaction_policy:
+    - field: "authority_status.raw_value"
+      action: "replace_with_redaction_token"
+    - field: "systems.*.api_key_ref"
+      action: "store_reference_only; raw_secret_in_vault"
+  actuator_integration_policy: >
+    No direct piping of chat or provenance text into control/actuation systems.
+    All actuator commands must be signed and go through the authenticated control plane.
+  human_in_loop: true
+  allowed_automation_triggers: []   # explicit allowlist; empty by default
+
+# 9. VERSIONING & CHANGE HISTORY
+9_versioning:
+  schema_version: "provenance-schema-1.0"
+  last_modified: "2026-09-29T13:00:00Z"
+  change_log:
+    - date: "2026-09-29"
+      author: "Shawn Patrick Cooper Gardner"
+      note: "Created initial provenance metadata record; authority token stored in vault."
+
+# 10. REFERENCES (external links, immutable pointers)
+10_references:
+  - description: "Federal Register 91 FR 61308 (Title IX Recodification)"
+    url: "https://www.federalregister.gov/2026-19929"
+  - description: "GovInfo search results (GENIUS Act)"
+    url: "https://api.govinfo.gov/search?query=GENIUS+Act+2026-19860"
+Plain English
