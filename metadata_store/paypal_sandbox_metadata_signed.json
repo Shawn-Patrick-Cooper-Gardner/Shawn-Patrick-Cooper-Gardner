@@ -1,0 +1,52 @@
+{
+  "payload": {
+    "paypal_sandbox_metadata": {
+      "merchant": {
+        "owner_name": "Shawn Patrick Cooper Gardner",
+        "business_entity": "13 Aerospace Defense Company",
+        "environment": "sandbox",
+        "dashboard_url": "https://developer.paypal.com/dashboard"
+      },
+      "application": {
+        "display_name": "Super Project Excalibur",
+        "sdk_version": "PayPal JavaScript SDK v6",
+        "created_at": "2026-10-28T08:15:00-07:00"
+      },
+      "credentials": {
+        "client_id": "BAAqnlpq1I6kXEpEVkIyLHsfZIYLVArdkXQExcwfjlRC-_nqjJxxwORTQHBYC5WZ9qI6c_8Q5tIEBDEg78",
+        "secret_key": "sandbox_secret_redacted",
+        "credential_scope": "sandbox_only",
+        "security_notice": "Store credentials securely; never expose secrets publicly."
+      },
+      "payment_acceptance": {
+        "mode": "merchant_sandbox",
+        "usage": "accept_test_payments_as_seller",
+        "supported_flows": [
+          "checkout_buttons",
+          "server_side_orders_api",
+          "client_side_sdk_v6"
+        ]
+      },
+      "deposit_channels": {
+        "bank_account": {
+          "routing_number": "031302696",
+          "account_number": "8086190291372",
+          "account_usage": "inbound_deposits_and_donations"
+        },
+        "cashapp": {
+          "cashtag": "$13adCompany",
+          "platform": "Cash App",
+          "usage": "donation_and_support_inbound"
+        }
+      },
+      "provenance": {
+        "region": "US-West-4 (Nevada/Arizona)",
+        "integrity": "sha256_pending",
+        "notes": "active account for purchasing and accepting payments."
+      }
+    }
+  },
+  "signature": "TU9DS19LTVNfUlNBU1NBX1BTU19TSEEyNTY6vj6YqngWLd6xMSr4qqGgJ9VHH0N5quJZfqzubURTBE0=",
+  "algorithm": "RSASSA_PSS_SHA_256",
+  "key_id": "arn:aws:kms:us-gov-west-1:007116171313:key/excalibur-geo-core-signing-key"
+}

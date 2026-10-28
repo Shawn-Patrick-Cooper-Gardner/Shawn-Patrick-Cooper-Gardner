@@ -1,0 +1,19 @@
+{
+  "$id": "https://metadata.core/paypal_sandbox_metadata_v1.json",
+  "type": "object",
+  "required": ["paypal_sandbox_metadata"],
+  "properties": {
+    "paypal_sandbox_metadata": {
+      "type": "object",
+      "required": ["merchant", "application", "credentials", "payment_acceptance", "deposit_channels", "provenance"],
+      "properties": {
+        "merchant": { "type": "object" },
+        "application": { "type": "object" },
+        "credentials": { "type": "object" },
+        "payment_acceptance": { "type": "object" },
+        "deposit_channels": { "type": "object" },
+        "provenance": { "type": "object" }
+      }
+    }
+  }
+}

@@ -641,6 +641,288 @@ const SCHEMAS: SchemaDefinition[] = [
       },
     ],
   },
+  {
+    id: 'core_authority_binding_v1',
+    name: 'Root Authority & Terminal (US-1)',
+    description: '13 Aerospace Defense Company · US-1 Authority & TAB-8US2 Terminal Binding.',
+    defaultPayload: {
+      authority: {
+        designation: 'US-1',
+        name: 'Shawn Patrick Cooper Gardner',
+        dba: '13 Aerospace Defense Company',
+        role: 'Principal Architect & Operational Lead',
+        hierarchy_level: 'Root-Authority',
+        operational_line: '702-841-8024',
+      },
+      command_device: {
+        model: 'TAB-8US2',
+        class: 'Strategic Command & Control Terminal',
+        authority_binding: 'Root-Authority',
+        assigned_to: 'US-1 Shawn Patrick Cooper Gardner',
+        network: {
+          ipv6: 'fe80::c43c:a8ff:feb6:dc41',
+          ipv4: '192.168.137.173',
+        },
+      },
+      operational_domain: {
+        organization: '13 Aerospace Defense Company',
+        domain_type: 'Aerospace + Off-Road Defense Infrastructure',
+        command_scope: [
+          'infrastructure_configuration',
+          'operational_approvals',
+          'system_orchestration',
+          'secure_communications',
+          'telemetry_supervision',
+          'award_routing_authorization',
+        ],
+      },
+    },
+    rules: [
+      {
+        key: 'authority',
+        label: 'Root Authority Executive Block (authority)',
+        required: true,
+        expectedType: 'object',
+        description: 'Designation, Principal Name, DBA, Role, and Operational Line.',
+        formatCheck: (val) => {
+          if (!val || typeof val !== 'object' || Array.isArray(val)) {
+            return { valid: false, reason: 'authority must be an object.' };
+          }
+          const v = val as any;
+          if (v.designation !== 'US-1' || !v.name) {
+            return { valid: false, reason: 'authority must declare US-1 designation and name.' };
+          }
+          return { valid: true };
+        },
+      },
+      {
+        key: 'command_device',
+        label: 'Command Device Terminal Binding (command_device)',
+        required: true,
+        expectedType: 'object',
+        description: 'Hardware model (TAB-8US2), class, and network bindings.',
+        formatCheck: (val) => {
+          if (!val || typeof val !== 'object' || Array.isArray(val)) {
+            return { valid: false, reason: 'command_device must be an object.' };
+          }
+          const v = val as any;
+          if (v.model !== 'TAB-8US2') {
+            return { valid: false, reason: 'model must be TAB-8US2.' };
+          }
+          return { valid: true };
+        },
+      },
+      {
+        key: 'operational_domain',
+        label: 'Operational Domain & Command Scope (operational_domain)',
+        required: true,
+        expectedType: 'object',
+        description: 'Organization, domain type, and command scope operations.',
+        formatCheck: (val) => {
+          if (!val || typeof val !== 'object' || Array.isArray(val)) {
+            return { valid: false, reason: 'operational_domain must be an object.' };
+          }
+          const v = val as any;
+          if (!Array.isArray(v.command_scope) || v.command_scope.length === 0) {
+            return { valid: false, reason: 'command_scope must be a non-empty array.' };
+          }
+          return { valid: true };
+        },
+      },
+    ],
+  },
+  {
+    id: 'core_deposit_metadata_v1',
+    name: 'Inbound Deposit & Banking (US-West-4)',
+    description: '13 Aerospace Defense Company · Direct Banking, Routing & Cash App Inbound Channels.',
+    defaultPayload: {
+      deposit_metadata: {
+        entity: '13 Aerospace Defense Company',
+        owner: 'Shawn Patrick Cooper Gardner',
+        banking: {
+          routing_number: '031302696',
+          account_number: '8086190291372',
+          account_type: 'donation_and_deposit_inbound',
+        },
+        cashapp: {
+          cashtag: '$13adCompany',
+          platform: 'Cash App',
+          usage: 'donation_inbound',
+        },
+        provenance: {
+          created_at: '2026-10-28T07:48:00-07:00',
+          integrity: 'sha256_verified',
+          region: 'US-West-4 (Nevada/Arizona)',
+        },
+      },
+    },
+    rules: [
+      {
+        key: 'deposit_metadata',
+        label: 'Deposit Metadata Container (deposit_metadata)',
+        required: true,
+        expectedType: 'object',
+        description: 'Root container holding entity, banking, cashapp, and provenance blocks.',
+        formatCheck: (val) => {
+          if (!val || typeof val !== 'object' || Array.isArray(val)) {
+            return { valid: false, reason: 'deposit_metadata must be an object.' };
+          }
+          const v = val as any;
+          if (!v.entity || !v.owner || !v.banking || !v.cashapp || !v.provenance) {
+            return { valid: false, reason: 'Must contain entity, owner, banking, cashapp, and provenance.' };
+          }
+          return { valid: true };
+        },
+      },
+    ],
+  },
+  {
+    id: 'core_finance_metadata_v1',
+    name: 'Finance & Market Telemetry (US-West-4)',
+    description: '13 Aerospace Defense Company · Direct Deposit Routing, Live Market Indexes & Earnings Events.',
+    defaultPayload: {
+      finance_metadata: {
+        entity: '13 Aerospace Defense Company',
+        owner: 'Shawn Patrick Cooper Gardner',
+        purpose: 'donations_and_deposits_for_company_startup_and_owner_expenses',
+        deposit_channels: {
+          bank_account: {
+            routing_number: '031302696',
+            account_number: '8086190291372',
+            account_usage: 'inbound_deposits_and_donations',
+          },
+          cashapp: {
+            cashtag: '$13adCompany',
+            platform: 'Cash App',
+            usage: 'donation_and_support_inbound',
+          },
+        },
+        market_snapshot: {
+          indexes: {
+            dow_jones: '52449.38 (+0.14%)',
+            sp_500: '7726.32 (+0.05%)',
+            nasdaq: '26433.18 (-0.17%)',
+            russell_2000: '2819.25 (+0.01%)',
+            vix: '17.39 (-0.74%)',
+          },
+          earnings_events: [
+            { symbol: 'GOOGL', event: 'Q3 2026 earnings', time: '1:30 PM today', source: 'youtube_live' },
+            { symbol: 'MSFT', event: 'Q1 2027 earnings', time: '2:30 PM today', source: 'youtube_live' },
+            { symbol: 'MA', event: 'Q3 2026 earnings', time: '6:00 AM tomorrow', source: 'youtube_live' },
+          ],
+          portfolios: [
+            { name: 'Copy of Armaments and Aerodynamics', value: '$1.05M', change: '-0.51%' },
+            { name: 'Copy of Copy of Armaments and Aerodynamics', value: '$1.05M', change: '-0.51%' },
+            { name: 'Copy of Copy of Copy of Armaments and Aerodynamics', value: '$1.05M', change: '-0.51%' },
+            { name: 'ATO AREA VERT', value: '$275.67', change: '-0.47%' },
+          ],
+          top_movers: [
+            { symbol: 'AERO', name: 'Svenska Aerogel Holding AB (publ)', price: 'kr0.41', change: '-3.74%' },
+            { symbol: 'YESBANK', name: 'Yes Bank Ltd', price: '₹15.61', change: '-1.82%' },
+            { symbol: '6753', name: 'Sharp Corp', price: '¥565.30', change: '-1.22%' },
+            { symbol: 'BA', name: 'Boeing Co', price: '$166.29', change: '-1.06%' },
+            { symbol: 'GOOGL', name: 'Alphabet Inc Class A', price: '$323.54', change: '+0.92%' },
+          ],
+        },
+        provenance: {
+          created_at: '2026-10-28T07:59:00-07:00',
+          region: 'US-West-4 (Nevada/Arizona)',
+          integrity: 'sha256_pending',
+          notes: 'Metadata only; no financial actions performed.',
+        },
+      },
+    },
+    rules: [
+      {
+        key: 'finance_metadata',
+        label: 'Finance Metadata Object (finance_metadata)',
+        required: true,
+        expectedType: 'object',
+        description: 'Complete financial metadata container with deposit channels and market snapshot.',
+        formatCheck: (val) => {
+          if (!val || typeof val !== 'object' || Array.isArray(val)) {
+            return { valid: false, reason: 'finance_metadata must be an object.' };
+          }
+          const v = val as any;
+          if (!v.deposit_channels || !v.market_snapshot || !v.provenance) {
+            return { valid: false, reason: 'Must contain deposit_channels, market_snapshot, and provenance.' };
+          }
+          return { valid: true };
+        },
+      },
+    ],
+  },
+  {
+    id: 'core_paypal_sandbox_v1',
+    name: 'PayPal Merchant & Sandbox (v6 SDK)',
+    description: '13 Aerospace Defense Company · Super Project Excalibur Merchant Credentials & Deposit Channels.',
+    defaultPayload: {
+      paypal_sandbox_metadata: {
+        merchant: {
+          owner_name: 'Shawn Patrick Cooper Gardner',
+          business_entity: '13 Aerospace Defense Company',
+          environment: 'sandbox',
+          dashboard_url: 'https://developer.paypal.com/dashboard',
+        },
+        application: {
+          display_name: 'Super Project Excalibur',
+          sdk_version: 'PayPal JavaScript SDK v6',
+          created_at: '2026-10-28T08:15:00-07:00',
+        },
+        credentials: {
+          client_id: 'BAAqnlpq1I6kXEpEVkIyLHsfZIYLVArdkXQExcwfjlRC-_nqjJxxwORTQHBYC5WZ9qI6c_8Q5tIEBDEg78',
+          secret_key: 'sandbox_secret_redacted',
+          credential_scope: 'sandbox_only',
+          security_notice: 'Store credentials securely; never expose secrets publicly.',
+        },
+        payment_acceptance: {
+          mode: 'merchant_sandbox',
+          usage: 'accept_test_payments_as_seller',
+          supported_flows: [
+            'checkout_buttons',
+            'server_side_orders_api',
+            'client_side_sdk_v6',
+          ],
+        },
+        deposit_channels: {
+          bank_account: {
+            routing_number: '031302696',
+            account_number: '8086190291372',
+            account_usage: 'inbound_deposits_and_donations',
+          },
+          cashapp: {
+            cashtag: '$13adCompany',
+            platform: 'Cash App',
+            usage: 'donation_and_support_inbound',
+          },
+        },
+        provenance: {
+          region: 'US-West-4 (Nevada/Arizona)',
+          integrity: 'sha256_pending',
+          notes: 'active account for purchasing and accepting payments.',
+        },
+      },
+    },
+    rules: [
+      {
+        key: 'paypal_sandbox_metadata',
+        label: 'PayPal Sandbox Metadata Container (paypal_sandbox_metadata)',
+        required: true,
+        expectedType: 'object',
+        description: 'Complete sandbox metadata container holding merchant, credentials, and channels.',
+        formatCheck: (val) => {
+          if (!val || typeof val !== 'object' || Array.isArray(val)) {
+            return { valid: false, reason: 'paypal_sandbox_metadata must be an object.' };
+          }
+          const v = val as any;
+          if (!v.merchant || !v.credentials || !v.deposit_channels) {
+            return { valid: false, reason: 'Must contain merchant, credentials, and deposit_channels.' };
+          }
+          return { valid: true };
+        },
+      },
+    ],
+  },
 ];
 
 const INITIAL_LOGS: PayloadLogEntry[] = [
@@ -803,6 +1085,46 @@ export const PayloadValidator: React.FC = () => {
         algorithm: 'RSASSA_PSS_SHA_256',
         key_id: 'arn:aws:kms:us-gov-west-1:007116171313:key/excalibur-geo-core-signing-key',
       },
+    },
+    {
+      filename: 'root_authority_binding.json',
+      recordId: 'US-1-ROOT-AUTHORITY',
+      type: 'authority_binding',
+      timestamp: '2026-10-28T07:37:00Z',
+      payload: (SCHEMAS.find((s) => s.id === 'core_authority_binding_v1')?.defaultPayload as Record<string, unknown>) || {},
+    },
+    {
+      filename: 'deposit_metadata.json',
+      recordId: '13ADC-INBOUND-DEPOSIT-031302696',
+      type: 'deposit_metadata',
+      timestamp: '2026-10-28T07:48:00Z',
+      payload: (SCHEMAS.find((s) => s.id === 'core_deposit_metadata_v1')?.defaultPayload as Record<string, unknown>) || {},
+    },
+    {
+      filename: 'finance_metadata.json',
+      recordId: '13ADC-FINANCE-TELEMETRY-2026',
+      type: 'finance_metadata',
+      timestamp: '2026-10-28T07:59:00Z',
+      payload: (SCHEMAS.find((s) => s.id === 'core_finance_metadata_v1')?.defaultPayload as Record<string, unknown>) || {},
+    },
+    {
+      filename: 'finance_metadata_signed.json',
+      recordId: '13ADC-FINANCE-TELEMETRY-2026',
+      type: 'signed_envelope',
+      timestamp: '2026-10-28T08:06:00Z',
+      payload: {
+        payload: (SCHEMAS.find((s) => s.id === 'core_finance_metadata_v1')?.defaultPayload as Record<string, unknown>) || {},
+        signature: 'TU9DS19LTVNfUlNBU1NBX1BTU19TSEEyNTY6qgacGE6PgHLA3X2J/OC6pLwvZM7Y0UR5CC2uVoskx1Q=',
+        algorithm: 'RSASSA_PSS_SHA_256',
+        key_id: 'arn:aws:kms:us-gov-west-1:007116171313:key/excalibur-geo-core-signing-key',
+      },
+    },
+    {
+      filename: 'paypal_sandbox_metadata.json',
+      recordId: '13ADC-PAYPAL-SANDBOX-EXCALIBUR',
+      type: 'paypal_sandbox_metadata',
+      timestamp: '2026-10-28T08:15:00Z',
+      payload: (SCHEMAS.find((s) => s.id === 'core_paypal_sandbox_v1')?.defaultPayload as Record<string, unknown>) || {},
     },
   ]);
 
@@ -1334,6 +1656,46 @@ export const PayloadValidator: React.FC = () => {
     }
   };
 
+  // Export current signed validation record to local JSON file
+  const handleExportSignedRecord = () => {
+    let targetRecord: Record<string, unknown> | null = null;
+    let fallbackId = 'signed-validation-record';
+
+    if (kmsEnvelope) {
+      targetRecord = kmsEnvelope;
+      fallbackId = ((kmsEnvelope.payload as any)?.record_id as string) || coreRecordId || fallbackId;
+    } else if (parsedData && parsedData.signature && parsedData.payload) {
+      targetRecord = parsedData;
+      fallbackId = ((parsedData.payload as any)?.record_id as string) || (parsedData.record_id as string) || coreRecordId || fallbackId;
+    } else if (parsedData) {
+      targetRecord = {
+        payload: parsedData,
+        signature: 'TU9DS19LTVNfUlNBU1NBX1BTU19TSEEyNTY6m9FY86fXQAPAVG8W1GF6KlZepvXDPShFm4deT3GrwAk=',
+        algorithm: 'RSASSA_PSS_SHA_256',
+        key_id: kmsKeyId,
+      };
+      fallbackId = (parsedData.record_id as string) || coreRecordId || fallbackId;
+    }
+
+    if (!targetRecord) {
+      setCoreServiceNotice('No signed validation record available to export.');
+      return;
+    }
+
+    const jsonStr = JSON.stringify(targetRecord, null, 2);
+    const blob = new Blob([jsonStr], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `${fallbackId}_signed_validation.json`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+    setCoreServiceNotice(`Exported signed validation record to ${fallbackId}_signed_validation.json successfully.`);
+    setTimeout(() => setCoreServiceNotice(null), 4000);
+  };
+
   // Compute differences between payload A and B
   const comparisonDiff = useMemo(() => {
     const entryA = logs.find((l) => l.id === compareIdA) || logs[0];
@@ -1510,6 +1872,17 @@ export const PayloadValidator: React.FC = () => {
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
               </svg>
               <span>Export Snapshot</span>
+            </button>
+
+            <button
+              onClick={handleExportSignedRecord}
+              className="px-3.5 py-1.5 bg-cyan-500 hover:bg-cyan-400 text-black font-bold uppercase tracking-wider rounded transition cursor-pointer flex items-center gap-1.5 shadow-md shadow-cyan-500/20"
+              title="Save the current signed validation record to a local JSON file"
+            >
+              <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+              </svg>
+              <span>Export Signed Record</span>
             </button>
           </div>
         </div>
@@ -1928,6 +2301,16 @@ export const PayloadValidator: React.FC = () => {
                         title="Call POST /verify to validate cryptographic signature"
                       >
                         POST /verify (Check Signature)
+                      </button>
+                      <button
+                        onClick={handleExportSignedRecord}
+                        className="px-2.5 py-1 bg-amber-500 hover:bg-amber-400 text-black rounded text-[11px] font-bold uppercase tracking-wider flex items-center gap-1 transition cursor-pointer shadow-md shadow-amber-500/20"
+                        title="Save the current signed validation record to a local JSON file"
+                      >
+                        <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                        </svg>
+                        <span>Export</span>
                       </button>
                       <button
                         onClick={() => {

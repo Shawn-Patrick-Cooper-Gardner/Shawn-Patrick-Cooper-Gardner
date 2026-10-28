@@ -1,0 +1,21 @@
+{
+  "deposit_metadata": {
+    "entity": "13 Aerospace Defense Company",
+    "owner": "Shawn Patrick Cooper Gardner",
+    "banking": {
+      "routing_number": "031302696",
+      "account_number": "8086190291372",
+      "account_type": "donation_and_deposit_inbound"
+    },
+    "cashapp": {
+      "cashtag": "$13adCompany",
+      "platform": "Cash App",
+      "usage": "donation_inbound"
+    },
+    "provenance": {
+      "created_at": "2026-10-28T07:48:00-07:00",
+      "integrity": "sha256_verified",
+      "region": "US-West-4 (Nevada/Arizona)"
+    }
+  }
+}

@@ -25,6 +25,8 @@ export interface PayPalIntegrationConfig {
   environment: EnvironmentMode;
   apiBase: string;
   clientId: string;
+  merchantEmail?: string;
+  cashappCashtag?: string;
   currency: string;
   livePaymentsEnabled: boolean;
   failClosed: boolean;
@@ -107,8 +109,10 @@ export const METADATA_CONFIG: PayPalIntegrationConfig = {
   ownerLabel: '13 Aerospace Defense Company',
   environment: 'SANDBOX',
   apiBase: 'https://api-m.sandbox.paypal.com',
-  // Sandbox test client ID (safe public identifier for PayPal JS SDK script)
-  clientId: 'sb',
+  // Authoritative Sandbox Client ID for Super Project Excalibur
+  clientId: (typeof import.meta !== 'undefined' && (import.meta as any).env?.VITE_PAYPAL_CLIENT_ID) || 'BAAqnlpq1I6kXEpEVkIyLHsfZIYLVArdkXQExcwfjlRC-_nqjJxxwORTQHBYC5WZ9qI6c_8Q5tIEBDEg78',
+  merchantEmail: 'sb-ayhjr30769518@business.example.com',
+  cashappCashtag: '$13adCompany',
   currency: 'USD',
   livePaymentsEnabled: false,
   failClosed: true,

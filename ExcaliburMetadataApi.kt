@@ -91,10 +91,8 @@ class ExcaliburMetadataApi(
     /**
      * Verify a signed record envelope via /verify.
      */
-    fun verifySignature(signedEnvelope: Map<String, Any>): Boolean {
-        val adapter = moshi.adapter(Map::class.java)
-        val json = adapter.toJson(signedEnvelope)
-        val body = json.toRequestBody(jsonMediaType)
+    fun verifySignature(signedRecordJson: String): Boolean {
+        val body = signedRecordJson.toRequestBody(jsonMediaType)
 
         val request = Request.Builder()
             .url("$baseUrl/verify")
@@ -102,9 +100,18 @@ class ExcaliburMetadataApi(
             .build()
 
         client.newCall(request).execute().use { response ->
-            if (!response.isSuccessful) return false
-            val responseBody = response.body?.string() ?: return false
-            return responseBody.contains("\"valid\": true") || responseBody.contains("\"valid\":true")
+            val result = response.body?.string() ?: return false
+            val json = moshi.adapter(Map::class.java).fromJson(result)
+            return json?.get("valid") == true
         }
+    }
+
+    /**
+     * Overload: Verify a signed record envelope map via /verify.
+     */
+    fun verifySignature(signedEnvelope: Map<String, Any>): Boolean {
+        val adapter = moshi.adapter(Map::class.java)
+        val json = adapter.toJson(signedEnvelope)
+        return verifySignature(json)
     }
 }

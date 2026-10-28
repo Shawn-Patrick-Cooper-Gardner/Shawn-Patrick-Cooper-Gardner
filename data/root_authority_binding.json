@@ -1,0 +1,32 @@
+{
+  "authority": {
+    "designation": "US-1",
+    "name": "Shawn Patrick Cooper Gardner",
+    "dba": "13 Aerospace Defense Company",
+    "role": "Principal Architect & Operational Lead",
+    "hierarchy_level": "Root-Authority",
+    "operational_line": "702-841-8024"
+  },
+  "command_device": {
+    "model": "TAB-8US2",
+    "class": "Strategic Command & Control Terminal",
+    "authority_binding": "Root-Authority",
+    "assigned_to": "US-1 Shawn Patrick Cooper Gardner",
+    "network": {
+      "ipv6": "fe80::c43c:a8ff:feb6:dc41",
+      "ipv4": "192.168.137.173"
+    }
+  },
+  "operational_domain": {
+    "organization": "13 Aerospace Defense Company",
+    "domain_type": "Aerospace + Off-Road Defense Infrastructure",
+    "command_scope": [
+      "infrastructure_configuration",
+      "operational_approvals",
+      "system_orchestration",
+      "secure_communications",
+      "telemetry_supervision",
+      "award_routing_authorization"
+    ]
+  }
+}

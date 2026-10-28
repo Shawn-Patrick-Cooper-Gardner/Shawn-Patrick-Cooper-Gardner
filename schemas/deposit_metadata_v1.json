@@ -1,0 +1,42 @@
+{
+  "$id": "https://metadata.core/deposit_metadata_v1.json",
+  "type": "object",
+  "required": ["deposit_metadata"],
+  "properties": {
+    "deposit_metadata": {
+      "type": "object",
+      "required": ["entity", "owner", "banking", "cashapp", "provenance"],
+      "properties": {
+        "entity": { "type": "string" },
+        "owner": { "type": "string" },
+        "banking": {
+          "type": "object",
+          "required": ["routing_number", "account_number", "account_type"],
+          "properties": {
+            "routing_number": { "type": "string" },
+            "account_number": { "type": "string" },
+            "account_type": { "type": "string" }
+          }
+        },
+        "cashapp": {
+          "type": "object",
+          "required": ["cashtag", "platform", "usage"],
+          "properties": {
+            "cashtag": { "type": "string" },
+            "platform": { "type": "string" },
+            "usage": { "type": "string" }
+          }
+        },
+        "provenance": {
+          "type": "object",
+          "required": ["created_at", "integrity", "region"],
+          "properties": {
+            "created_at": { "type": "string" },
+            "integrity": { "type": "string" },
+            "region": { "type": "string" }
+          }
+        }
+      }
+    }
+  }
+}

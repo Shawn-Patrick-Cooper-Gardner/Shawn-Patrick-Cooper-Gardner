@@ -1,0 +1,10 @@
+{
+  "record_id": "geo-2026-10-27-01",
+  "type": "workflow_gate_update",
+  "payload": {
+    "artifact_id": "13.geoint.core_migration_provenance.json",
+    "gate_name": "ANALYST_REVIEW",
+    "gate_status": "APPROVED",
+    "reason": "Analyst validated geospatial metadata"
+  }
+}

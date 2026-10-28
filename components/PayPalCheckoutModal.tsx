@@ -296,9 +296,11 @@ export const PayPalCheckoutModal: React.FC<PayPalCheckoutModalProps> = ({
               <span className="text-slate-500 block uppercase">Fail-Closed</span>
               <span className="text-emerald-400 font-bold">Strictly Active</span>
             </div>
-            <div className="bg-black/50 p-2 rounded-lg border border-white/5">
+            <div className="bg-black/50 p-2 rounded-lg border border-white/5 truncate">
               <span className="text-slate-500 block uppercase">Client ID</span>
-              <span className="text-cyan-400 font-bold">Public Sandbox ('sb')</span>
+              <span className="text-cyan-400 font-bold font-mono text-[10px] truncate block" title={METADATA_CONFIG.clientId}>
+                {METADATA_CONFIG.clientId.slice(0, 10)}...
+              </span>
             </div>
           </div>
 
@@ -427,6 +429,52 @@ export const PayPalCheckoutModal: React.FC<PayPalCheckoutModalProps> = ({
               </div>
             </div>
           )}
+
+          {/* Merchant Direct Cash App Option */}
+          <div className="bg-[#0B0F17] border border-emerald-500/40 rounded-xl p-3.5 space-y-2">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-2">
+                <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+                <span className="text-xs font-bold text-white uppercase font-mono tracking-wider">
+                  Merchant Cash App Direct Checkout
+                </span>
+              </div>
+              <span className="text-[10px] font-mono bg-emerald-950 text-emerald-300 border border-emerald-800 px-2 py-0.5 rounded font-bold">
+                INSTANT REMITTANCE
+              </span>
+            </div>
+
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 bg-[#111622] p-2.5 rounded-lg border border-emerald-900/50">
+              <div>
+                <span className="text-[10px] text-slate-500 block uppercase font-mono">Merchant Cashtag</span>
+                <span className="text-sm font-bold text-emerald-400 font-mono tracking-wider select-all">$13adCompany</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <button
+                  type="button"
+                  onClick={() => {
+                    navigator.clipboard.writeText('$13adCompany');
+                    setLocalFeedback('Cashtag $13adCompany copied to clipboard.');
+                    setTimeout(() => setLocalFeedback(null), 3000);
+                  }}
+                  className="px-2.5 py-1 bg-gray-800 hover:bg-gray-700 text-cyan-300 border border-gray-700 rounded text-[11px] font-mono font-bold transition cursor-pointer"
+                >
+                  Copy Cashtag
+                </button>
+                <a
+                  href={`https://cash.app/$13adCompany/${item.price.toFixed(2)}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-3 py-1 bg-emerald-500 hover:bg-emerald-400 text-black font-bold uppercase rounded text-[11px] font-mono transition inline-flex items-center gap-1 shadow-md shadow-emerald-500/20"
+                >
+                  Pay ${item.price.toFixed(2)} on Cash App ↗
+                </a>
+              </div>
+            </div>
+            <p className="text-[10px] text-slate-400 font-mono">
+              Merchant: 13 Aerospace Defense Company · Shawn Patrick Cooper Gardner. Remit with reference note: <span className="text-amber-300">{item.sku}</span>.
+            </p>
+          </div>
 
           {/* Sandbox Lifecycle Simulator & Action Bar */}
           <div className="space-y-2">

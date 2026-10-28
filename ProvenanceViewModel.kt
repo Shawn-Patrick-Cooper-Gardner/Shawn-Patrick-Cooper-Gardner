@@ -59,12 +59,17 @@ class ProvenanceViewModel(
             }
         }
     }
-}fun pushSignedMetadata(record: MetadataRecord, onDone: (Boolean) -> Unit) {
+
+    fun verifySignature(signedRecordJson: String, onResult: (Boolean) -> Unit) {
         viewModelScope.launch(Dispatchers.IO) {
-                val ok = api.storeSignedMetadata(record)
-                        withContext(Dispatchers.Main) {
-                                    onDone(ok)
-                                            }
-                                                }
-                                                }
+            val valid = try {
+                api.verifySignature(signedRecordJson)
+            } catch (e: Exception) {
+                false
+            }
+            withContext(Dispatchers.Main) {
+                onResult(valid)
+            }
+        }
+    }
 }

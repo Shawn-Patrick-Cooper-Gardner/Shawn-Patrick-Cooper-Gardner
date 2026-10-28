@@ -54,7 +54,7 @@ export const V010_LINUX_ARM64 = {
 export const GEOINT_EXPECTED_HASH = 'db2d4737f4f7342b20a5727a7320bacfcc98a8cf41926d9474c2e412b54dd44f';
 
 export const BankSyncProvenanceSection: React.FC = () => {
-  const [activeTab, setActiveTab] = useState<'matrix' | 'ci_runner' | 'hasher' | 'terminal'>('matrix');
+  const [activeTab, setActiveTab] = useState<'matrix' | 'ci_runner' | 'hasher' | 'terminal' | 'deposits'>('matrix');
   const [isProbing, setIsProbing] = useState<boolean>(false);
   const [probeStatus, setProbeStatus] = useState<string>('IDLE');
   const [probeResult, setProbeResult] = useState<BankSyncLatestMeta>(OFFICIAL_BANKSYNC_LATEST);
@@ -293,6 +293,20 @@ export const BankSyncProvenanceSection: React.FC = () => {
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
           </svg>
           <span>Automated Shell Scripts</span>
+        </button>
+
+        <button
+          onClick={() => setActiveTab('deposits')}
+          className={`px-4 py-2 rounded font-bold cursor-pointer transition flex items-center gap-2 ${
+            activeTab === 'deposits'
+              ? 'bg-emerald-400 text-black shadow-md shadow-emerald-400/20'
+              : 'bg-[#111622] text-slate-400 hover:text-white border border-gray-800'
+          }`}
+        >
+          <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z" />
+          </svg>
+          <span>Deposit & Banking Routing</span>
         </button>
       </div>
 
@@ -622,6 +636,320 @@ echo "ea1e11046ecd264ec554843362ff28112b775a8e47254fac7730db3cbe8b1791  banksync
 # Validate v0.1.0 on Linux ARM64
 echo "b17fbc8140310b9b2fc53a59dec9864d724ae6f939b7392d31f00de7628443cf  banksync-linux-arm64" | sha256sum -c -`}
             </pre>
+          </div>
+        </div>
+      )}
+
+      {/* Tab 5: Inbound Deposit & Banking Direct Routing */}
+      {activeTab === 'deposits' && (
+        <div className="space-y-6">
+          {/* Header Banner */}
+          <div className="bg-[#111622] border border-emerald-500/40 rounded-xl p-6 shadow-xl shadow-emerald-950/20">
+            <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 border-b border-gray-800 pb-4">
+              <div>
+                <div className="flex items-center gap-2 mb-1">
+                  <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse" />
+                  <span className="text-xs font-mono uppercase tracking-widest text-emerald-400 font-bold">
+                    // AUTHORITATIVE INBOUND DEPOSIT & BANKING CHANNELS
+                  </span>
+                  <span className="px-2 py-0.5 bg-emerald-950 text-emerald-300 border border-emerald-700 rounded text-[10px] font-bold">
+                    US-WEST-4 VERIFIED
+                  </span>
+                </div>
+                <h2 className="text-xl sm:text-2xl font-black text-white uppercase tracking-tight font-mono">
+                  13 Aerospace Defense Company · Direct Deposit Gateway
+                </h2>
+                <p className="text-xs text-slate-400 mt-1">
+                  Designated for inbound donations, mission deposits, engineering sponsorships, and off-road defense allocations.
+                </p>
+              </div>
+
+              <div className="flex items-center gap-2">
+                <span className="text-[11px] font-mono text-slate-400">Owner / Principal:</span>
+                <span className="px-3 py-1 bg-[#0B0F17] text-cyan-300 border border-cyan-800 rounded text-xs font-bold font-mono">
+                  Shawn Patrick Cooper Gardner (US-1)
+                </span>
+              </div>
+            </div>
+
+            {/* Inbound Cards Grid */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mt-6">
+              {/* Direct Banking Card */}
+              <div className="bg-[#0B0F17] border border-gray-800 rounded-lg p-5 flex flex-col justify-between gap-4">
+                <div className="space-y-3">
+                  <div className="flex items-center justify-between">
+                    <span className="text-xs font-bold text-amber-400 uppercase tracking-wider font-mono flex items-center gap-1.5">
+                      <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 14v3m4-3v3m4-3v3M3 21h18M3 10h18M3 7l9-4 9 4M4 10h16v11H4V10z" />
+                      </svg>
+                      Inbound ACH / Wire Banking
+                    </span>
+                    <span className="text-[10px] font-mono bg-amber-950 text-amber-300 border border-amber-800 px-2 py-0.5 rounded">
+                      donation_and_deposit_inbound
+                    </span>
+                  </div>
+
+                  <div className="space-y-2 pt-2">
+                    <div>
+                      <span className="text-[11px] text-slate-500 block uppercase font-mono">Routing Number (ABA)</span>
+                      <div className="flex items-center justify-between bg-[#111622] p-2 rounded border border-gray-800 mt-0.5">
+                        <span className="font-mono text-sm text-white font-bold select-all tracking-wider">031302696</span>
+                        <button
+                          onClick={() => copyToClipboard('031302696', 'routing')}
+                          className="text-xs text-cyan-400 hover:underline font-mono cursor-pointer"
+                        >
+                          {copiedKey === 'routing' ? '[ COPIED ]' : '[ COPY ]'}
+                        </button>
+                      </div>
+                    </div>
+
+                    <div>
+                      <span className="text-[11px] text-slate-500 block uppercase font-mono">Account Number</span>
+                      <div className="flex items-center justify-between bg-[#111622] p-2 rounded border border-gray-800 mt-0.5">
+                        <span className="font-mono text-sm text-emerald-400 font-bold select-all tracking-wider">8086190291372</span>
+                        <button
+                          onClick={() => copyToClipboard('8086190291372', 'account')}
+                          className="text-xs text-cyan-400 hover:underline font-mono cursor-pointer"
+                        >
+                          {copiedKey === 'account' ? '[ COPIED ]' : '[ COPY ]'}
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="pt-3 border-t border-gray-900 text-[11px] font-mono text-slate-400 flex items-center justify-between">
+                  <span>Usage: Inbound Capital & Mission Allotments</span>
+                  <span className="text-emerald-400">Direct Depositing Ready</span>
+                </div>
+              </div>
+
+              {/* Cash App Card */}
+              <div className="bg-[#0B0F17] border border-gray-800 rounded-lg p-5 flex flex-col justify-between gap-4">
+                <div className="space-y-3">
+                  <div className="flex items-center justify-between">
+                    <span className="text-xs font-bold text-emerald-400 uppercase tracking-wider font-mono flex items-center gap-1.5">
+                      <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                      </svg>
+                      Cash App Official Portal
+                    </span>
+                    <span className="text-[10px] font-mono bg-emerald-950 text-emerald-300 border border-emerald-800 px-2 py-0.5 rounded">
+                      donation_inbound
+                    </span>
+                  </div>
+
+                  <div className="space-y-2 pt-2">
+                    <div>
+                      <span className="text-[11px] text-slate-500 block uppercase font-mono">Official Cashtag</span>
+                      <div className="flex items-center justify-between bg-[#111622] p-2.5 rounded border border-emerald-900/50 mt-0.5">
+                        <span className="font-mono text-lg text-emerald-300 font-extrabold select-all tracking-wider">$13adCompany</span>
+                        <div className="flex items-center gap-2">
+                          <button
+                            onClick={() => copyToClipboard('$13adCompany', 'cashtag')}
+                            className="text-xs text-cyan-400 hover:underline font-mono cursor-pointer"
+                          >
+                            {copiedKey === 'cashtag' ? '[ COPIED ]' : '[ COPY ]'}
+                          </button>
+                          <a
+                            href="https://cash.app/$13adCompany"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="px-2.5 py-1 bg-emerald-500 hover:bg-emerald-400 text-black text-xs font-bold font-mono rounded transition inline-flex items-center gap-1"
+                          >
+                            Open Cash App ↗
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+
+                    <p className="text-xs text-slate-400 leading-relaxed pt-1">
+                      Instant mobile peer-to-peer donations and support directly channeled into 13 Aerospace Defense Company equipment and desert racing logistics.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="pt-3 border-t border-gray-900 text-[11px] font-mono text-slate-400 flex items-center justify-between">
+                  <span>Platform: Cash App Official</span>
+                  <span className="text-cyan-400 font-bold">$13adCompany</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Cryptographic Provenance Card */}
+            <div className="mt-5 p-4 bg-[#0B0F17] rounded-lg border border-gray-800">
+              <div className="flex flex-wrap items-center justify-between gap-2 mb-2">
+                <span className="text-xs font-bold text-white uppercase font-mono tracking-wider flex items-center gap-1.5">
+                  <svg className="w-3.5 h-3.5 text-cyan-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                  </svg>
+                  Deposit Metadata Provenance Block
+                </span>
+                <button
+                  onClick={() =>
+                    copyToClipboard(
+                      JSON.stringify(
+                        {
+                          deposit_metadata: {
+                            entity: '13 Aerospace Defense Company',
+                            owner: 'Shawn Patrick Cooper Gardner',
+                            banking: {
+                              routing_number: '031302696',
+                              account_number: '8086190291372',
+                              account_type: 'donation_and_deposit_inbound',
+                            },
+                            cashapp: {
+                              cashtag: '$13adCompany',
+                              platform: 'Cash App',
+                              usage: 'donation_inbound',
+                            },
+                            provenance: {
+                              created_at: '2026-10-28T07:48:00-07:00',
+                              integrity: 'sha256_verified',
+                              region: 'US-West-4 (Nevada/Arizona)',
+                            },
+                          },
+                        },
+                        null,
+                        2
+                      ),
+                      'deposit_json'
+                    )
+                  }
+                  className="text-xs text-cyan-400 hover:underline font-mono cursor-pointer"
+                >
+                  {copiedKey === 'deposit_json' ? '[ COPIED JSON ]' : '[ COPY RAW JSON ]'}
+                </button>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs font-mono">
+                <div className="p-2 bg-[#111622] rounded border border-gray-800">
+                  <span className="text-[10px] text-slate-500 block uppercase">Created At</span>
+                  <span className="text-slate-300">2026-10-28T07:48:00-07:00</span>
+                </div>
+                <div className="p-2 bg-[#111622] rounded border border-gray-800">
+                  <span className="text-[10px] text-slate-500 block uppercase">Integrity</span>
+                  <span className="text-emerald-400 font-bold">sha256_verified</span>
+                </div>
+                <div className="p-2 bg-[#111622] rounded border border-gray-800">
+                  <span className="text-[10px] text-slate-500 block uppercase">Region</span>
+                  <span className="text-amber-300">US-West-4 (Nevada/Arizona)</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Market Snapshot & Tactical Portfolio Telemetry */}
+            <div className="mt-5 p-5 bg-[#0B0F17] rounded-lg border border-cyan-900/40 space-y-4">
+              <div className="flex flex-wrap items-center justify-between gap-2 border-b border-gray-800 pb-3">
+                <div className="flex items-center gap-2">
+                  <span className="w-2 h-2 rounded-full bg-cyan-400" />
+                  <span className="text-xs font-bold text-white uppercase font-mono tracking-wider">
+                    Market Snapshot & Tactical Earnings Telemetry
+                  </span>
+                  <span className="text-[10px] bg-cyan-950 text-cyan-300 border border-cyan-800 px-2 py-0.5 rounded font-mono">
+                    2026-10-28 07:59 PDT
+                  </span>
+                </div>
+                <span className="text-[11px] text-slate-400 font-mono">
+                  Purpose: Company Startup & Owner Operational Expenses
+                </span>
+              </div>
+
+              {/* Major Indexes */}
+              <div>
+                <span className="text-[11px] text-slate-400 uppercase font-mono font-bold block mb-2">Major Market Indexes</span>
+                <div className="grid grid-cols-2 sm:grid-cols-5 gap-2 text-xs font-mono">
+                  <div className="p-2 bg-[#111622] rounded border border-gray-800">
+                    <span className="text-[10px] text-slate-500 block">DOW JONES</span>
+                    <span className="text-white font-bold">52,449.38</span>
+                    <span className="text-emerald-400 text-[10px] block">+0.14%</span>
+                  </div>
+                  <div className="p-2 bg-[#111622] rounded border border-gray-800">
+                    <span className="text-[10px] text-slate-500 block">S&P 500</span>
+                    <span className="text-white font-bold">7,726.32</span>
+                    <span className="text-emerald-400 text-[10px] block">+0.05%</span>
+                  </div>
+                  <div className="p-2 bg-[#111622] rounded border border-gray-800">
+                    <span className="text-[10px] text-slate-500 block">NASDAQ</span>
+                    <span className="text-white font-bold">26,433.18</span>
+                    <span className="text-rose-400 text-[10px] block">-0.17%</span>
+                  </div>
+                  <div className="p-2 bg-[#111622] rounded border border-gray-800">
+                    <span className="text-[10px] text-slate-500 block">RUSSELL 2000</span>
+                    <span className="text-white font-bold">2,819.25</span>
+                    <span className="text-emerald-400 text-[10px] block">+0.01%</span>
+                  </div>
+                  <div className="p-2 bg-[#111622] rounded border border-gray-800">
+                    <span className="text-[10px] text-slate-500 block">VIX</span>
+                    <span className="text-amber-300 font-bold">17.39</span>
+                    <span className="text-emerald-400 text-[10px] block">-0.74%</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Earnings Events & Tactical Portfolios */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-1">
+                {/* Live Earnings Events */}
+                <div className="bg-[#111622] p-3 rounded-lg border border-gray-800 space-y-2">
+                  <span className="text-[11px] text-amber-400 uppercase font-mono font-bold block">
+                    Upcoming Earnings Broadcasts (Live)
+                  </span>
+                  <div className="space-y-1.5 text-xs font-mono">
+                    <div className="flex items-center justify-between p-1.5 bg-[#0B0F17] rounded border border-gray-800/80">
+                      <div>
+                        <strong className="text-cyan-300">GOOGL</strong>
+                        <span className="text-slate-400 ml-2">Q3 2026 earnings</span>
+                      </div>
+                      <span className="text-[10px] text-amber-300">1:30 PM today (YT Live)</span>
+                    </div>
+                    <div className="flex items-center justify-between p-1.5 bg-[#0B0F17] rounded border border-gray-800/80">
+                      <div>
+                        <strong className="text-cyan-300">MSFT</strong>
+                        <span className="text-slate-400 ml-2">Q1 2027 earnings</span>
+                      </div>
+                      <span className="text-[10px] text-amber-300">2:30 PM today (YT Live)</span>
+                    </div>
+                    <div className="flex items-center justify-between p-1.5 bg-[#0B0F17] rounded border border-gray-800/80">
+                      <div>
+                        <strong className="text-cyan-300">MA</strong>
+                        <span className="text-slate-400 ml-2">Q3 2026 earnings</span>
+                      </div>
+                      <span className="text-[10px] text-amber-300">6:00 AM tomorrow</span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Portfolio Allocations */}
+                <div className="bg-[#111622] p-3 rounded-lg border border-gray-800 space-y-2">
+                  <span className="text-[11px] text-emerald-400 uppercase font-mono font-bold block">
+                    Armaments & Aerodynamics Portfolios
+                  </span>
+                  <div className="space-y-1.5 text-xs font-mono">
+                    <div className="flex items-center justify-between p-1.5 bg-[#0B0F17] rounded border border-gray-800/80">
+                      <span className="text-slate-300 truncate max-w-[200px]">Armaments & Aerodynamics</span>
+                      <div className="text-right">
+                        <span className="text-white font-bold">$1.05M</span>
+                        <span className="text-rose-400 text-[10px] ml-1.5">-0.51%</span>
+                      </div>
+                    </div>
+                    <div className="flex items-center justify-between p-1.5 bg-[#0B0F17] rounded border border-gray-800/80">
+                      <span className="text-slate-300">ATO AREA VERT</span>
+                      <div className="text-right">
+                        <span className="text-white font-bold">$275.67</span>
+                        <span className="text-rose-400 text-[10px] ml-1.5">-0.47%</span>
+                      </div>
+                    </div>
+                    <div className="flex items-center justify-between p-1.5 bg-[#0B0F17] rounded border border-gray-800/80">
+                      <span className="text-slate-400 text-[11px]">Boeing Co (BA)</span>
+                      <div className="text-right">
+                        <span className="text-white font-bold">$166.29</span>
+                        <span className="text-rose-400 text-[10px] ml-1.5">-1.06%</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       )}
