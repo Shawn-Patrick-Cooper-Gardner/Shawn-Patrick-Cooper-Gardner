@@ -1,0 +1,29 @@
+{
+  "$id": "https://metadata.core/sbom_v1.json",
+  "type": "object",
+  "required": [
+    "record_id",
+    "project",
+    "components"
+  ],
+  "properties": {
+    "record_id": { "type": "string" },
+    "project": { "type": "string" },
+    "components": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "version": { "type": "string" },
+          "license": { "type": "string" },
+          "sha256": { "type": "string" }
+        },
+        "required": [
+          "name",
+          "version"
+        ]
+      }
+    }
+  }
+}

@@ -44,7 +44,10 @@ export const DynoChart: React.FC<DynoChartProps> = ({ vehicle, tuning, soundEnab
     setIsPulling(true);
     setPullRpm(2000);
 
-    if (soundEnabled && audioEngine.getIsRunning()) {
+    if (soundEnabled) {
+      if (!audioEngine.getIsRunning()) {
+        audioEngine.start();
+      }
       audioEngine.setRpm(2000);
     }
 
@@ -67,7 +70,11 @@ export const DynoChart: React.FC<DynoChartProps> = ({ vehicle, tuning, soundEnab
       } else {
         setIsPulling(false);
         if (soundEnabled && audioEngine.getIsRunning()) {
-          audioEngine.setRpm(900); // Return to idle
+          audioEngine.setRpm(audioEngine.getActiveProfile().idleRpm);
+          // High-RPM throttle snap shut generates authentic overrun backfires from unburnt Trick fuel
+          audioEngine.playBackfirePop(1.0);
+          setTimeout(() => audioEngine.playBackfirePop(0.75), 180);
+          setTimeout(() => audioEngine.playBackfirePop(0.5), 360);
         }
       }
     };

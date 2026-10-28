@@ -1,0 +1,34 @@
+{
+  "$id": "https://metadata.core/validation_v1.json",
+  "type": "object",
+  "required": [
+    "record_id",
+    "project",
+    "check_time_utc",
+    "artifact_sha256",
+    "artifact_bytes",
+    "checks",
+    "status"
+  ],
+  "properties": {
+    "record_id": { "type": "string" },
+    "project": { "type": "string" },
+    "check_time_utc": { "type": "string", "format": "date-time" },
+    "platform": { "type": "string" },
+    "python": { "type": "string" },
+    "artifact": { "type": "string" },
+    "artifact_sha256": { "type": "string" },
+    "artifact_bytes": { "type": "integer" },
+    "json_top_level_type": { "type": "string" },
+    "checks": {
+      "type": "object",
+      "properties": {
+        "file_exists": { "type": "boolean" },
+        "json_parse": { "type": "string" },
+        "expected_digest_format": { "type": "string" },
+        "sha256_match": { "type": "string" }
+      }
+    },
+    "status": { "type": "string" }
+  }
+}

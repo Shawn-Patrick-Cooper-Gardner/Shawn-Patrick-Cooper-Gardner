@@ -7,6 +7,7 @@ interface SpecSheetModalProps {
   tuning: TuningConfig;
   isOpen: boolean;
   onClose: () => void;
+  onCommissionBuild?: (item: { name: string; sku: string; price: number; description: string }) => void;
 }
 
 export const SpecSheetModal: React.FC<SpecSheetModalProps> = ({
@@ -14,6 +15,7 @@ export const SpecSheetModal: React.FC<SpecSheetModalProps> = ({
   tuning,
   isOpen,
   onClose,
+  onCommissionBuild,
 }) => {
   const [teamName, setTeamName] = useState('C.O.R.E. Desert Racing');
   const [customRaceNumber, setCustomRaceNumber] = useState(vehicle.raceNumber);
@@ -209,13 +211,31 @@ ${vehicle.enduranceRaces.map((r) => `- ${r}`).join('\n')}
         </div>
 
         {/* Modal Footer */}
-        <div className="flex items-center justify-between p-6 border-t border-white/10 bg-[#0E131F]">
-          <button
-            onClick={exportSpecText}
-            className="px-4 py-2 bg-amber-400 hover:bg-amber-300 text-black text-xs font-bold uppercase tracking-wider rounded-lg transition-colors cursor-pointer flex items-center gap-2"
-          >
-            <span>{copied ? 'Copied To Clipboard!' : 'Copy Build Docket'}</span>
-          </button>
+        <div className="flex flex-wrap items-center justify-between gap-3 p-5 sm:p-6 border-t border-white/10 bg-[#0E131F]">
+          <div className="flex items-center gap-2">
+            <button
+              onClick={exportSpecText}
+              className="px-4 py-2 bg-white/10 hover:bg-white/20 text-white text-xs font-semibold uppercase tracking-wider rounded-lg transition-colors cursor-pointer flex items-center gap-2"
+            >
+              <span>{copied ? 'Copied To Clipboard!' : 'Copy Build Docket'}</span>
+            </button>
+
+            {onCommissionBuild && (
+              <button
+                onClick={() => {
+                  onCommissionBuild({
+                    sku: `13ADC-BUILD-${vehicle.raceNumber}`,
+                    name: `${vehicle.name} Custom Paddock Race Build`,
+                    price: 2850.0,
+                    description: `Custom race commissioning docket for #${vehicle.raceNumber} (${teamName}). Calibrated ${tunedHp} BHP @ ${tuning.boostPsi} PSI boost, 4340 billet planetary transfer, race fuel mapping.`,
+                  });
+                }}
+                className="px-4 py-2 bg-amber-400 hover:bg-amber-300 text-black text-xs font-bold uppercase tracking-wider rounded-lg transition-colors cursor-pointer flex items-center gap-1.5 shadow-md shadow-amber-500/20"
+              >
+                <span>⚡ Commission Build via PayPal ($2,850)</span>
+              </button>
+            )}
+          </div>
 
           <button
             onClick={onClose}

@@ -1,5 +1,6 @@
 import React from 'react';
 import { Vehicle } from '../data/vehicles';
+import { audioEngine } from '../services/AudioEngine';
 
 export interface TuningConfig {
   boostPsi: number; // 6 to 18 PSI
@@ -185,22 +186,32 @@ export const TuningBench: React.FC<TuningBenchProps> = ({
           {/* Fuel Octane Grade Selector */}
           <div className="flex flex-col gap-2 pt-2 border-t border-white/5">
             <span className="font-bold text-white uppercase tracking-wider text-sm">
-              Fuel Octane Blend
+              Fuel Octane Blend & Combustion Chemistry
             </span>
             <div className="grid grid-cols-3 gap-3">
               {([91, 100, 110] as const).map((octane) => (
                 <button
                   key={octane}
-                  onClick={() => update('raceFuelOctane', octane)}
-                  className={`py-2 px-3 text-xs font-semibold font-mono rounded-lg border transition-colors cursor-pointer ${
+                  onClick={() => {
+                    update('raceFuelOctane', octane);
+                    if (octane === 110) {
+                      audioEngine.setProfile('chain-blown-400-trick');
+                    }
+                  }}
+                  className={`py-2 px-3 text-xs font-semibold font-mono rounded-lg border transition-colors cursor-pointer text-center ${
                     tuning.raceFuelOctane === octane
                       ? 'bg-amber-400 text-black border-amber-300 font-bold shadow'
                       : 'bg-black/30 text-slate-300 border-white/10 hover:border-white/20'
                   }`}
                 >
-                  {octane} Octane {octane === 110 ? '(Sunoco Pro)' : ''}
+                  {octane === 110 ? 'Trick 110 Race Fuel' : `${octane} Octane`}
                 </button>
               ))}
+            </div>
+            <div className="text-[11px] font-mono text-amber-400/90">
+              {tuning.raceFuelOctane === 110
+                ? '★ Trick 110 Leaded Spec: Maximum flame velocity, crisp metallic header bark, no knock at 18 PSI.'
+                : `${tuning.raceFuelOctane} Octane Pump/Race Blend`}
             </div>
           </div>
         </div>
@@ -264,6 +275,33 @@ export const TuningBench: React.FC<TuningBenchProps> = ({
               </div>
               <div className="text-right text-xs text-slate-400 font-mono">
                 4.56 Final Drive · 37" Tire Roll
+              </div>
+            </div>
+
+            {/* Live Acoustic Calibration Audition */}
+            <div className="p-4 bg-amber-500/10 rounded-lg border border-amber-500/30 flex flex-col sm:flex-row items-center justify-between gap-3">
+              <div>
+                <div className="text-xs text-amber-400 font-mono uppercase font-bold flex items-center gap-1.5">
+                  <span className="w-2 h-2 rounded-full bg-amber-400 animate-pulse" />
+                  <span>Audition 400cu Sound Profile</span>
+                </div>
+                <div className="text-[11px] text-slate-300 font-mono mt-0.5">
+                  Hear {tuning.boostPsi} PSI Roots whine + {tuning.raceFuelOctane === 110 ? 'Trick 110' : `${tuning.raceFuelOctane} Octane`} exhaust bark.
+                </div>
+              </div>
+              <div className="flex items-center gap-2">
+                <button
+                  onClick={() => audioEngine.throttleBlip()}
+                  className="px-3 py-1.5 bg-amber-400 hover:bg-amber-300 text-black font-['Barlow_Condensed',sans-serif] text-xs uppercase font-extrabold rounded tracking-wider transition cursor-pointer shadow active:scale-95"
+                >
+                  Throttle Blip
+                </button>
+                <button
+                  onClick={() => audioEngine.playBackfirePop(1.0)}
+                  className="px-3 py-1.5 bg-black/60 hover:bg-black/90 text-amber-300 border border-amber-500/40 font-['Barlow_Condensed',sans-serif] text-xs uppercase font-bold rounded tracking-wider transition cursor-pointer active:scale-95"
+                >
+                  Header Pop
+                </button>
               </div>
             </div>
           </div>

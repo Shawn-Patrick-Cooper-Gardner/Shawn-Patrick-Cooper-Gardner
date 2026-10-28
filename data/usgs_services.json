@@ -1,0 +1,33 @@
+{
+  "currentVersion": 11.3,
+  "folders": [
+    "Utilities"
+  ],
+  "services": [
+    {
+      "name": "3DEPElevationIndex",
+      "type": "MapServer",
+      "description": "3D Elevation Program (3DEP) High-Resolution Elevation Index"
+    },
+    {
+      "name": "NHDPlus_HR_Index",
+      "type": "MapServer",
+      "description": "National Hydrography Dataset Plus High Resolution Stream Network"
+    },
+    {
+      "name": "USGS_Seamless1m_Index",
+      "type": "MapServer",
+      "description": "USGS Seamless 1-Meter Bare-Earth Digital Elevation Model (DEM)"
+    },
+    {
+      "name": "USGSNAIPImageryIndex",
+      "type": "MapServer",
+      "description": "National Agriculture Imagery Program (NAIP) High-Resolution Aerial Imagery"
+    },
+    {
+      "name": "13.geoint.core",
+      "type": "MapServer",
+      "description": "13 Aerospace Defense Company Geospatial Intelligence (GEOINT) Core Service"
+    }
+  ]
+}

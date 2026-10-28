@@ -1,62 +1,62 @@
-# Gemini Enterprise Portal QR Code Badge
+# Implementation Plan: Desert Racing Garage Expansion (Blueprints, Night HUD & Pit Comms)
 
-An interactive QR code badge and modal dialog linking directly to the official Google Gemini portal (`https://gemini.google.com`), rendered as an in-browser SVG QR code for mobile scanning and quick web access.
-
-## User Review & Critical Decisions
-
-> [!IMPORTANT]
-> The QR code links directly to the official, public Google Gemini web portal (`https://gemini.google.com`). It is rendered using an in-browser vector SVG generator, requiring zero external tracking or third-party image endpoints.
-
-- **Confirmed Decision (Phase 1)**: Display an interactive QR code badge linking to the official Gemini portal.
-- **Placement & Accessibility**: A discreet, clean utility badge in the top navigation bar (`Gemini Portal`) that opens an accessible modal with:
-  1. High-resolution vector QR code optimized for mobile camera scanning.
-  2. Direct destination URL (`https://gemini.google.com`).
-  3. One-click "Copy URL" button and "Open in New Tab" link.
-- **Styling**: Aligned with the application's obsidian and cyan palette (`#0B0F17`, `#111622`, `border-gray-800`), ensuring sharp contrast and instant camera recognition.
+Integrate all three requested modules into the Desert Racing Garage application: an interactive Concept Art & Blueprint Drafting Board, a Night-Run Desert Telemetry HUD with dynamic high-beam spotter lighting controls, and a Pit Crew Live Radio & Telemetry Log with checkpoint sector times.
 
 ---
 
-## 1. Overview & Core Concept
+## User Review Required
 
-- **What It Does**: Provides users with a clear, scan-ready QR code badge and modal dialog to quickly transition between desktop workstations and mobile devices or field tablets when visiting the official Gemini portal.
-- **Target Audience**: Users operating across multiple devices who need immediate mobile pairing and access to Google Gemini.
-- **Key Value**: Delivers instantaneous QR generation and direct portal linking without third-party redirects or network latency.
+> [!NOTE]
+> All three features will be seamlessly unified into the dark obsidian & desert amber garage workspace, maintaining the 1-row top bar navigation and procedural Web Audio engine.
 
----
-
-## 2. User Experience & Visual Design
-
-- **User Flow**:
-  1. User clicks the **Gemini Portal** button in the header toolbar.
-  2. An elegant modal dialog appears displaying a crisp, high-contrast QR code centered on a clean white inset background (ensuring optimal camera readability).
-  3. User scans with any standard phone/tablet camera or clicks the "Open Portal" link.
-- **Design Tokens**:
-  - Modal Background: `#0E131F` with backdrop blur.
-  - QR Container: Crisp white background (`#FFFFFF`) with quiet 16px padding to ensure rapid camera detection.
-  - Typography: Monospace destination readout with copy status indicator.
+1. **Audio Synthesis**: The Pit Crew Radio will use Web Audio procedural bandpass filtering and radio squelch clicks (no external audio files required, instant load).
+2. **Night Mode Lighting**: The Night-Run HUD will feature dynamic spotlight overlays on the vehicle stage (high-beam LED light bars, amber dust-piercing fog beams, and thermal NVG night-vision mode).
 
 ---
 
-## 3. Technical Architecture & Component Mapping
+## Proposed Changes
 
-```
-┌───────────────────────────────────────────────────────────────┐
-│                    DESERT RACING GARAGE                       │
-│                                                               │
-│   ┌───────────────────────────────────────────────────────┐   │
-│   │ Top Bar: Brand · Nav Links · [Gemini Portal QR] · CTA │   │
-│   └───────────────────────────────────────────────────────┘   │
-│                                                               │
-│   ┌───────────────────────────────────────────────────────┐   │
-│   │ [Modal Overlay]: Gemini Portal QR Badge               │   │
-│   │                                                       │   │
-│   │ · High-Contrast Vector SVG QR Code                    │   │
-│   │ · Target URL: https://gemini.google.com               │   │
-│   │ · [Copy Link] · [Open in New Window] · [Close]        │   │
-│   └───────────────────────────────────────────────────────┘   │
-└───────────────────────────────────────────────────────────────┘
-```
+### 1. Concept Art & Blueprint Drafting Board (`components/BlueprintGallery.tsx`)
+- **Interactive Drafting Table UI**:
+  - Technical blueprint grid overlay with digital caliper / measurement ruler tool.
+  - Interactive hotspot inspection on chassis roll cage, 8-71 Roots blower induction, long-travel suspension geometry, and track width footprint.
+  - Concept art lightbox mode showcasing vehicle sketches and design renders with zoom/pan and drafting pencil sketch shader filter.
+  - Spec breakdown table detailing 4130 chromoly tube specs, weld standards, and suspension geometry calculations.
 
-- **Core Components**:
-  - `GeminiQrModal.tsx`: Generates the vector QR matrix and renders the modal dialog with scanner instructions and copy actions.
-  - `GarageHeader.tsx`: Houses the top bar trigger button.
+### 2. Night-Run Desert Telemetry HUD & Spotter Controls (`components/NightRunHud.tsx`)
+- **Atmospheric Night Mode on Vehicle Stage**:
+  - Toggle between Daylight Paddock, Twilight Dust Run, and Midnight Desert Starlight.
+  - Interactive Roof Light Bar controller:
+    - Master spotter toggle (High-power 50" curved roof LED bar)
+    - Amber dust-piercing pod lights (cut through Mojave silt)
+    - Beam intensity & spread angle slider
+    - Strobe / Chase beacon mode for zero-visibility silt beds
+  - Thermal / FLIR NVG (Night Vision Goggle) phosphor green shader view mode for spotting desert terrain obstacles and heat signatures (exhaust headers, supercharger case, brake rotors).
+
+### 3. Pit Crew Live Radio & Telemetry Log (`components/PitTelemetryLog.tsx`)
+- **Procedural Radio Comms**:
+  - Web Audio synthetic RF squelch bursts, roger beeps, and tactical crew audio cues.
+  - Radio transmission log with audio pulse visualizer.
+- **Race Sector Telemetry & Checkpoint Splits**:
+  - Live sector checkpoint tracker (Start/Primm Dry Lake -> Checkpoint 1 Jean Wash -> Checkpoint 2 Sand Mountain -> Checkpoint 3 Rock Quarry -> Finish).
+  - Dynamic 4-corner tire telemetry: PSI and temperature heatmaps (soaking up 150°F+ desert friction).
+  - Fuel burn rate estimator based on current tuning blower boost.
+  - Interactive Pit Stop Crew stopwatch timer with tire change, fuel dump, and visor wipe task benchmarks.
+
+### 4. Header & Application Integration (`components/GarageHeader.tsx`, `App.tsx`)
+- Add intuitive navigation items for **Drafting Board**, **Night HUD**, and **Pit Telemetry**.
+- Ensure clean mobile responsive overflow with sleek quick-tabs and status badge indicators.
+- Synchronize audio triggers between the V8 engine rumble and the pit radio squelch.
+
+---
+
+## Verification Plan
+
+### Automated Checks
+- Run `compile_applet` to verify TypeScript types, component exports, and build bundle integrity.
+- Run `lint_applet` to confirm zero lint issues.
+
+### Manual / Browser Verification
+- **Drafting Board**: Switch between chassis, suspension, induction, and footprint blueprints; test digital caliper measurement tool and sketch lightbox.
+- **Night HUD**: Toggle high-beam roof lightbar, amber dust pods, and NVG thermal night vision; test beam spread sliders.
+- **Pit Telemetry & Radio**: Trigger radio transmissions and verify procedural squelch sounds; start pit timer and observe sector times and tire temperature fluctuations.

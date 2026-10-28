@@ -1,6 +1,74 @@
 {
-  "name": "Super Project Excalibur ",
-  "description": "Navigate the Boulder City NV Black Project Area for 1st phases of proposed restoration plans for 13 Aerospace Defense Company to study post war enclaves within the Boulder City limits Shawn Patrick Cooper Gardner Doing business as a certified Safety Management and T.R.A.P. fully trained professional claiming http://www.apple.com/DTDs/PropertyList-1.0.dtd",
+  "name": "Super Project Excalibur",
+  "description": "Desert Racing Garage, C.O.R.E. Planetary Engineering, BankSync Binary Provenance & PayPal v2 Orders Portal",
   "requestFramePermissions": [],
-  "majorCapabilities": []
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ],
+  "system_declaration": "13-AERO-DEF-CO // P.A.T. 13 COGNITIVE BRIDGE SUPER PROJECT",
+  "build_identifier": "DREADNOUGHT BUILD & HANDSHAKE DECK",
+  "timestamp_utc": "2026-09-10T23:26:26Z",
+  "corporate_governance": {
+    "entity": "13 Aerospace Defense Company",
+    "structure": "Sole Proprietorship (No LLC)",
+    "owner_principal": "Shawn Patrick Cooper Gardner (US-1)",
+    "corporate_email": "i3adass13@outlook.com",
+    "primary_contact_line": "702-504-6730",
+    "sam_profile": {
+      "cage_code": "9AZX1",
+      "uei": "A13B-X792-C4M9"
+    },
+    "credentials_and_certifications": {
+      "pec_safety_cert": "00711617",
+      "nspe_member_id": "601402280",
+      "fcc_frn": "00314163408",
+      "civil_service_equivalence": "Aerospace Engineer NH-04"
+    }
+  },
+  "hardware_node_binding": {
+    "root_command_terminal": "WHOOP_TAB-8US2",
+    "hardware_serial": "AF312TYQ23073108072",
+    "os_build": "Android 11 (RP1A.201005.001 / V24_20250402)",
+    "network_gateways": {
+      "nextdns_config_id": "784a7d",
+      "local_ipv4": "192.168.137.173",
+      "local_ipv6": "fe80::c43c:a8ff:feb6:dc41"
+    },
+    "subjugated_field_units": [
+      "SP555D"
+    ]
+  },
+  "geospatial_and_infrastructure": {
+    "primary_coordinates": {
+      "latitude": 35.97199,
+      "longitude": -114.83954,
+      "datum": "WGS 84 / World Geodetic System",
+      "region": "US 1 WEST BOULDER CITY 89005 AREA"
+    },
+    "hangar_facility": {
+      "identifier": "Hangar 1401",
+      "location": "1401 Madrone Historic Airfield / 803 Clarice Lane, Boulder City, Nevada",
+      "terminal_id": "LHR-0013-X",
+      "sub_surface_depth_envelope": "0 ft to -100 ft",
+      "active_power_spine": "1.2MW Induction Grid Core",
+      "conduit_pressure_psi": 195.0,
+      "thermal_status": {
+        "drive_core_temp_celsius": 72.0,
+        "hangar_deck_temp_celsius": 42.0,
+        "max_thermal_ceiling_celsius": 140.0,
+        "cooling_pump_alpha": "ACTIVE (6L/s)"
+      }
+    }
+  },
+  "operational_architecture": {
+    "excalibur_version": "2.1.0-deploy",
+    "security_protocols": [
+      "Safeland USA (BSD 3-Clause License)",
+      "SEAD-4 Identity Binding",
+      "STALLION Protocol Credential Shield",
+      "H-Protocol 02 RTG Vault Shielding"
+    ],
+    "target_configuration_hash": "sha256_0000000016f1c95cea1342",
+    "current_state": "HOLD / DRIVE NODE STANDBY"
+  }
 }

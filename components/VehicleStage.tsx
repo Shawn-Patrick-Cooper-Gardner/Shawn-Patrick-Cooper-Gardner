@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Vehicle, VehicleComponent } from '../data/vehicles';
+import { EngineSoundConsole } from './EngineSoundConsole';
 
 interface VehicleStageProps {
   vehicle: Vehicle;
@@ -11,6 +12,7 @@ interface VehicleStageProps {
   onRevEnd: () => void;
   isRevving: boolean;
   soundEnabled: boolean;
+  onToggleSound: () => void;
 }
 
 export const VehicleStage: React.FC<VehicleStageProps> = ({
@@ -22,6 +24,8 @@ export const VehicleStage: React.FC<VehicleStageProps> = ({
   onRevStart,
   onRevEnd,
   isRevving,
+  soundEnabled,
+  onToggleSound,
 }) => {
   const [activeHotspot, setActiveHotspot] = useState<VehicleComponent | null>(null);
   const [viewMode, setViewMode] = useState<'track' | 'paddock' | 'engine' | 'night'>('track');
@@ -44,7 +48,9 @@ export const VehicleStage: React.FC<VehicleStageProps> = ({
       {/* Vehicle Header & Title */}
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-white/10 pb-5">
         <div>
-          <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-amber-500 mb-1">
+          <div className="flex flex-wrap items-center gap-2 text-xs font-mono uppercase tracking-widest text-amber-500 mb-1">
+            <span className="px-1.5 py-0.5 rounded bg-amber-500/10 text-amber-400 border border-amber-500/30 text-[10px] font-bold">13ADC C.O.R.E. PRIVATE BUILD</span>
+            <span aria-hidden="true">·</span>
             <span>Class: {vehicle.class}</span>
             <span aria-hidden="true">·</span>
             <span>Race No. #{vehicle.raceNumber}</span>
@@ -234,6 +240,12 @@ export const VehicleStage: React.FC<VehicleStageProps> = ({
           </button>
         </div>
       </div>
+
+      {/* C.O.R.E. Real-World Engine Soundboard & Telemetry Console */}
+      <EngineSoundConsole
+        soundEnabled={soundEnabled}
+        onToggleSound={onToggleSound}
+      />
 
       {/* Vehicle Carousel Selector */}
       <div className="flex flex-col gap-3">
