@@ -1,0 +1,60 @@
+{
+  "$id": "https://metadata.core/finance_metadata_v1.json",
+  "type": "object",
+  "required": ["finance_metadata"],
+  "properties": {
+    "finance_metadata": {
+      "type": "object",
+      "required": ["entity", "owner", "purpose", "deposit_channels", "market_snapshot", "provenance"],
+      "properties": {
+        "entity": { "type": "string" },
+        "owner": { "type": "string" },
+        "purpose": { "type": "string" },
+        "deposit_channels": {
+          "type": "object",
+          "required": ["bank_account", "cashapp"],
+          "properties": {
+            "bank_account": {
+              "type": "object",
+              "required": ["routing_number", "account_number", "account_usage"],
+              "properties": {
+                "routing_number": { "type": "string" },
+                "account_number": { "type": "string" },
+                "account_usage": { "type": "string" }
+              }
+            },
+            "cashapp": {
+              "type": "object",
+              "required": ["cashtag", "platform", "usage"],
+              "properties": {
+                "cashtag": { "type": "string" },
+                "platform": { "type": "string" },
+                "usage": { "type": "string" }
+              }
+            }
+          }
+        },
+        "market_snapshot": {
+          "type": "object",
+          "required": ["indexes", "earnings_events", "portfolios", "top_movers"],
+          "properties": {
+            "indexes": { "type": "object" },
+            "earnings_events": { "type": "array" },
+            "portfolios": { "type": "array" },
+            "top_movers": { "type": "array" }
+          }
+        },
+        "provenance": {
+          "type": "object",
+          "required": ["created_at", "region", "integrity", "notes"],
+          "properties": {
+            "created_at": { "type": "string" },
+            "region": { "type": "string" },
+            "integrity": { "type": "string" },
+            "notes": { "type": "string" }
+          }
+        }
+      }
+    }
+  }
+}

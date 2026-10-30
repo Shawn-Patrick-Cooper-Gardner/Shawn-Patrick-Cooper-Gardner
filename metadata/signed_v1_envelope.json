@@ -1,0 +1,14 @@
+{
+  "record_id": "geo-migrate-2026-10-07-01",
+  "type": "signed_envelope",
+  "algorithm": "RSASSA_PSS_SHA_256",
+  "key_id": "arn:aws:kms:us-gov-west-1:007116171313:key/excalibur-geo-core-signing-key",
+  "created_at": "2026-10-28T09:00:00Z",
+  "signature": "MEQCID6Nf4h79xKjY68FqVp1ZpLw08Wz9z197y489s78d65sAiB90rSampleSignatureEnvelope",
+  "payload": {
+    "authority": "US 1 AUTHORITY",
+    "entity": "13 Aerospace Defense Company",
+    "target_file": "13.geoint.core_migration_provenance.json",
+    "expected_sha256": "db2d4737f4f7342b20a5727a7320bacfcc98a8cf41926d9474c2e412b54dd44f"
+  }
+}

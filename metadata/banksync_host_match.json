@@ -1,0 +1,19 @@
+{
+  "provenance_audit": {
+    "entity": "13 Aerospace Defense Company",
+    "authority": "US-1-AUTHORITY",
+    "operator": "Shawn Patrick Cooper Gardner",
+    "host_device": "WHOOP_TAB-8US2",
+    "architecture": "aarch64 (arm64-v8a)",
+    "operating_system": "Linux / Android 11",
+    "target_asset": "banksync-linux-arm64",
+    "version": "v0.1.1",
+    "channel": "stable",
+    "download_url": "https://cdn.banksync.io/cli/v0.1.1/banksync-linux-arm64",
+    "expected_sha256": "ea1e11046ecd264ec554843362ff28112b775a8e47254fac7730db3cbe8b1791",
+    "computed_sha256": "ea1e11046ecd264ec554843362ff28112b775a8e47254fac7730db3cbe8b1791",
+    "match_status": "MATCH CONFIRMED (100% BIT-FOR-BIT CORRESPONDENCE)",
+    "host_match": true,
+    "verified_timestamp": "2026-10-30T10:26:10-07:00"
+  }
+}

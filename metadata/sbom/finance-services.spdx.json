@@ -1,0 +1,22 @@
+{
+  "spdxVersion": "SPDX-2.3",
+  "dataLicense": "CC0-1.0",
+  "SPDXID": "SPDXRef-DOCUMENT",
+  "name": "Super Project Excalibur Finance Services SBOM",
+  "documentNamespace": "https://13adc.defense.gov/spdx/finance-services-2026",
+  "creationInfo": {
+    "creators": [
+      "Organization: 13 Aerospace Defense Company",
+      "Person: Shawn Patrick Cooper Gardner"
+    ],
+    "created": "2026-10-29T18:29:21.992Z"
+  },
+  "packages": [
+    {
+      "name": "excalibur-core",
+      "SPDXID": "SPDXRef-Package-Core",
+      "versionInfo": "2.1.0",
+      "downloadLocation": "NOASSERTION"
+    }
+  ]
+}

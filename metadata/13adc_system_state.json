@@ -1,0 +1,49 @@
+{
+  "13adc_system_state": {
+    "device_id": "13ADC-SYS-LC01",
+    "hardware_profile": {
+      "model": "A56FOXX",
+      "os_version": "Android 13 HV1.0",
+      "build_id": "020260910"
+    },
+    "network": {
+      "carrier": "AT&T",
+      "apn_profile": "NXTGENPHONE",
+      "dns_mode": "private",
+      "dns_endpoint": "3e1386.dns.nextdns.io",
+      "status": "network_ready"
+    },
+    "ui_root": {
+      "theme": "black_background",
+      "home_screen": "widget_grid",
+      "widgets_active": [
+        "EXCALIBUR Console",
+        "C.O.R.E. Telemetry",
+        "Aether Concept Lab",
+        "U_Fxcalibur Tracker",
+        "Asset Ledger",
+        "Directive Notebook",
+        "Contact Matrix",
+        "Routine Assistant"
+      ]
+    },
+    "modules": {
+      "console": "online",
+      "telemetry": "online",
+      "concept_lab": "online",
+      "u_fxcalibur_tracker": "online",
+      "asset_ledger": "online",
+      "directive_notebook": "online",
+      "contact_matrix": "online",
+      "routine_assistant": "online"
+    },
+    "integration": {
+      "concept_lab_to_u_fxcalibur": "push_pipeline_active",
+      "console_cards": "synced",
+      "system_navigation": "enabled"
+    },
+    "status": "SYSTEM_ONLINE",
+    "owner": "Shawn Patrick Cooper Gardner",
+    "location_context": "Boulder City, NV"
+  }
+}

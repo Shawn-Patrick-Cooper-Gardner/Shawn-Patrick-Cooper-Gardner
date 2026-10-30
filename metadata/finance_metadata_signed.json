@@ -1,0 +1,113 @@
+{
+  "payload": {
+    "finance_metadata": {
+      "entity": "13 Aerospace Defense Company",
+      "owner": "Shawn Patrick Cooper Gardner",
+      "purpose": "donations_and_deposits_for_company_startup_and_owner_expenses",
+      "deposit_channels": {
+        "bank_account": {
+          "routing_number": "031302696",
+          "account_number": "8086190291372",
+          "account_usage": "inbound_deposits_and_donations"
+        },
+        "cashapp": {
+          "cashtag": "$13adCompany",
+          "platform": "Cash App",
+          "usage": "donation_and_support_inbound"
+        }
+      },
+      "market_snapshot": {
+        "indexes": {
+          "dow_jones": "52449.38 (+0.14%)",
+          "sp_500": "7726.32 (+0.05%)",
+          "nasdaq": "26433.18 (-0.17%)",
+          "russell_2000": "2819.25 (+0.01%)",
+          "vix": "17.39 (-0.74%)"
+        },
+        "earnings_events": [
+          {
+            "symbol": "GOOGL",
+            "event": "Q3 2026 earnings",
+            "time": "1:30 PM today",
+            "source": "youtube_live"
+          },
+          {
+            "symbol": "MSFT",
+            "event": "Q1 2027 earnings",
+            "time": "2:30 PM today",
+            "source": "youtube_live"
+          },
+          {
+            "symbol": "MA",
+            "event": "Q3 2026 earnings",
+            "time": "6:00 AM tomorrow",
+            "source": "youtube_live"
+          }
+        ],
+        "portfolios": [
+          {
+            "name": "Copy of Armaments and Aerodynamics",
+            "value": "$1.05M",
+            "change": "-0.51%"
+          },
+          {
+            "name": "Copy of Copy of Armaments and Aerodynamics",
+            "value": "$1.05M",
+            "change": "-0.51%"
+          },
+          {
+            "name": "Copy of Copy of Copy of Armaments and Aerodynamics",
+            "value": "$1.05M",
+            "change": "-0.51%"
+          },
+          {
+            "name": "ATO AREA VERT",
+            "value": "$275.67",
+            "change": "-0.47%"
+          }
+        ],
+        "top_movers": [
+          {
+            "symbol": "AERO",
+            "name": "Svenska Aerogel Holding AB (publ)",
+            "price": "kr0.41",
+            "change": "-3.74%"
+          },
+          {
+            "symbol": "YESBANK",
+            "name": "Yes Bank Ltd",
+            "price": "\u20b915.61",
+            "change": "-1.82%"
+          },
+          {
+            "symbol": "6753",
+            "name": "Sharp Corp",
+            "price": "\u00a5565.30",
+            "change": "-1.22%"
+          },
+          {
+            "symbol": "BA",
+            "name": "Boeing Co",
+            "price": "$166.29",
+            "change": "-1.06%"
+          },
+          {
+            "symbol": "GOOGL",
+            "name": "Alphabet Inc Class A",
+            "price": "$323.54",
+            "change": "+0.92%"
+          }
+        ]
+      },
+      "provenance": {
+        "created_at": "2026-10-28T07:59:00-07:00",
+        "region": "US-West-4 (Nevada/Arizona)",
+        "integrity": "sha256_pending",
+        "notes": "Metadata only; no financial actions performed."
+      }
+    }
+  },
+  "signature": "TU9DS19LTVNfUlNBU1NBX1BTU19TSEEyNTY6qgacGE6PgHLA3X2J/OC6pLwvZM7Y0UR5CC2uVoskx1Q=",
+  "algorithm": "RSASSA_PSS_SHA_256",
+  "key_id": "arn:aws:kms:us-gov-west-1:007116171313:key/excalibur-geo-core-signing-key"
+}

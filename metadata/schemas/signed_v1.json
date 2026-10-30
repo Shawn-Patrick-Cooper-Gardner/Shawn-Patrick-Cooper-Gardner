@@ -1,0 +1,24 @@
+{
+  "$id": "https://metadata.core/signed_v1.json",
+  "type": "object",
+  "required": [
+    "payload",
+    "signature",
+    "algorithm",
+    "key_id"
+  ],
+  "properties": {
+    "payload": {
+      "type": "object"
+    },
+    "signature": {
+      "type": "string"
+    },
+    "algorithm": {
+      "type": "string"
+    },
+    "key_id": {
+      "type": "string"
+    }
+  }
+}

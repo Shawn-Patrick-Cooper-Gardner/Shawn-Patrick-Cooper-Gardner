@@ -1,0 +1,35 @@
+{
+  "paypal_vba_metadata": {
+    "resource": {
+      "title": "PayPal – Verify Bank Account (VBA) Interface",
+      "url": "https://www.paypal.com/myaccount/bundle/vba?intent=eip-ui&dd_entry_point=More-Menu-Web",
+      "category": "merchant_account_verification",
+      "environment": "sandbox_or_user_account",
+      "content_type": "web_ui_resource"
+    },
+    "merchant": {
+      "owner_name": "Shawn Patrick Cooper Gardner",
+      "business_entity": "13 Aerospace Defense Company",
+      "account_mode": "merchant_sandbox_setup",
+      "usage": "bank_account_linking_and_verification"
+    },
+    "deposit_channels": {
+      "bank_account": {
+        "routing_number": "031302696",
+        "account_number": "8086190291372",
+        "account_usage": "inbound_deposits_and_donations"
+      },
+      "cashapp": {
+        "cashtag": "$13adCompany",
+        "platform": "Cash App",
+        "usage": "donation_and_support_inbound"
+      }
+    },
+    "provenance": {
+      "created_at": "2026-10-28T09:03:00-07:00",
+      "region": "US-West-4 (Nevada/Arizona)",
+      "integrity": "sha256_pending",
+      "notes": "Metadata only; no financial actions performed."
+    }
+  }
+}

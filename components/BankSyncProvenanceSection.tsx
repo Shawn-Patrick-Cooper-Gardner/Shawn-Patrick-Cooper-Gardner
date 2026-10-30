@@ -1,4 +1,6 @@
 import React, { useState, useEffect, useMemo } from 'react';
+import { CashAppPayModal } from './CashAppPayModal';
+import { XrplProvenanceAudit } from './XrplProvenanceAudit';
 
 export interface BankSyncAsset {
   platform: string;
@@ -54,12 +56,13 @@ export const V010_LINUX_ARM64 = {
 export const GEOINT_EXPECTED_HASH = 'db2d4737f4f7342b20a5727a7320bacfcc98a8cf41926d9474c2e412b54dd44f';
 
 export const BankSyncProvenanceSection: React.FC = () => {
-  const [activeTab, setActiveTab] = useState<'matrix' | 'ci_runner' | 'hasher' | 'terminal' | 'deposits'>('matrix');
+  const [activeTab, setActiveTab] = useState<'matrix' | 'ci_runner' | 'hasher' | 'terminal' | 'deposits' | 'xrpl'>('matrix');
   const [isProbing, setIsProbing] = useState<boolean>(false);
   const [probeStatus, setProbeStatus] = useState<string>('IDLE');
   const [probeResult, setProbeResult] = useState<BankSyncLatestMeta>(OFFICIAL_BANKSYNC_LATEST);
   const [probeHttpCode, setProbeHttpCode] = useState<number>(200);
   const [copiedKey, setCopiedKey] = useState<string | null>(null);
+  const [isCashAppModalOpen, setIsCashAppModalOpen] = useState<boolean>(false);
 
   // Live verifier inputs
   const [customInputText, setCustomInputText] = useState<string>('');
@@ -307,6 +310,20 @@ export const BankSyncProvenanceSection: React.FC = () => {
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z" />
           </svg>
           <span>Deposit & Banking Routing</span>
+        </button>
+
+        <button
+          onClick={() => setActiveTab('xrpl')}
+          className={`px-4 py-2 rounded font-bold cursor-pointer transition flex items-center gap-2 ${
+            activeTab === 'xrpl'
+              ? 'bg-cyan-400 text-black shadow-md shadow-cyan-400/20'
+              : 'bg-[#111622] text-slate-400 hover:text-white border border-gray-800'
+          }`}
+        >
+          <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 11c0 3.517-1.009 6.799-2.753 9.571m-3.44-2.04l.054-.09A13.916 13.916 0 008 11a4 4 0 118 0c0 1.017-.07 2.019-.203 3m-2.118 6.844A21.88 21.88 0 0015.171 17m3.839 1.132c.645-2.266.99-4.659.99-7.132A8 8 0 004.07 7.29m4.879 4.879a3 3 0 104.243 4.242" />
+          </svg>
+          <span>XRPL Provenance &amp; Signer</span>
         </button>
       </div>
 
@@ -744,18 +761,24 @@ echo "b17fbc8140310b9b2fc53a59dec9864d724ae6f939b7392d31f00de7628443cf  banksync
                       <span className="text-[11px] text-slate-500 block uppercase font-mono">Official Cashtag</span>
                       <div className="flex items-center justify-between bg-[#111622] p-2.5 rounded border border-emerald-900/50 mt-0.5">
                         <span className="font-mono text-lg text-emerald-300 font-extrabold select-all tracking-wider">$13adCompany</span>
-                        <div className="flex items-center gap-2">
+                        <div className="flex flex-wrap items-center gap-2">
                           <button
                             onClick={() => copyToClipboard('$13adCompany', 'cashtag')}
                             className="text-xs text-cyan-400 hover:underline font-mono cursor-pointer"
                           >
                             {copiedKey === 'cashtag' ? '[ COPIED ]' : '[ COPY ]'}
                           </button>
+                          <button
+                            onClick={() => setIsCashAppModalOpen(true)}
+                            className="px-2.5 py-1 bg-emerald-500 hover:bg-emerald-400 text-black text-xs font-bold font-mono rounded transition inline-flex items-center gap-1 shadow-md shadow-emerald-500/20 cursor-pointer"
+                          >
+                            <span>Square SDK Pay ($25)</span>
+                          </button>
                           <a
                             href="https://cash.app/$13adCompany"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="px-2.5 py-1 bg-emerald-500 hover:bg-emerald-400 text-black text-xs font-bold font-mono rounded transition inline-flex items-center gap-1"
+                            className="px-2.5 py-1 bg-gray-800 hover:bg-gray-700 text-emerald-300 border border-emerald-800 text-xs font-bold font-mono rounded transition inline-flex items-center gap-1"
                           >
                             Open Cash App ↗
                           </a>
@@ -950,9 +973,122 @@ echo "b17fbc8140310b9b2fc53a59dec9864d724ae6f939b7392d31f00de7628443cf  banksync
                 </div>
               </div>
             </div>
+
+            {/* Direct Institutional Transaction Sync Payload Card (Updated 10/29/2026) */}
+            <div className="mt-5 p-5 bg-[#0B0F17] rounded-lg border border-cyan-800/60 space-y-4">
+              <div className="flex flex-wrap items-center justify-between gap-2 border-b border-gray-800 pb-3">
+                <div className="flex items-center gap-2">
+                  <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse" />
+                  <span className="text-xs font-bold text-white uppercase font-mono tracking-wider">
+                    Institutional Transaction Sync Engine (POST /v1/transactions/sync)
+                  </span>
+                  <span className="text-[10px] bg-emerald-950 text-emerald-300 border border-emerald-800 px-2 py-0.5 rounded font-mono font-bold">
+                    WINDOW: 2026-10-01 → 2026-10-29
+                  </span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <button
+                    onClick={() =>
+                      copyToClipboard(
+                        JSON.stringify(
+                          {
+                            account_ids: ['acc_business_checking_9941'],
+                            options: {
+                              include_pending: false,
+                              personal_finance_category: true,
+                            },
+                            cursor: 'eyJkaXJlY3Rpb24iOiJuZXh0Iiwib2Zmc2V0IjoyMH0=',
+                            date_range: {
+                              start_date: '2026-10-01',
+                              end_date: '2026-10-29',
+                            },
+                          },
+                          null,
+                          2
+                        ),
+                        'sync_json'
+                      )
+                    }
+                    className="text-xs text-cyan-400 hover:underline font-mono cursor-pointer"
+                  >
+                    {copiedKey === 'sync_json' ? '[ COPIED PAYLOAD ]' : '[ COPY PAYLOAD JSON ]'}
+                  </button>
+                  <button
+                    onClick={() =>
+                      copyToClipboard(
+                        `curl -X POST https://api.financial-institution.com/v1/transactions/sync \\\n  -H "Authorization: Bearer \${OAUTH2_ACCESS_TOKEN}" \\\n  -H "Content-Type: application/json" \\\n  -H "Accept: application/json" \\\n  -H "X-Correlation-ID: a1b2c3d4-e5f6-7890-abcd-ef0123456789" \\\n  -d '{\n    "account_ids": ["acc_business_checking_9941"],\n    "options": {\n      "include_pending": false,\n      "personal_finance_category": true\n    },\n    "cursor": "eyJkaXJlY3Rpb24iOiJuZXh0Iiwib2Zmc2V0IjoyMH0=",\n    "date_range": {\n      "start_date": "2026-10-01",\n      "end_date": "2026-10-29"\n    }\n  }'`,
+                        'sync_curl'
+                      )
+                    }
+                    className="px-2.5 py-1 bg-cyan-600 hover:bg-cyan-500 text-black text-xs font-bold font-mono rounded transition cursor-pointer"
+                  >
+                    {copiedKey === 'sync_curl' ? 'COPIED CURL' : 'COPY cURL'}
+                  </button>
+                </div>
+              </div>
+
+              {/* Status & Metadata Parameters Grid */}
+              <div className="grid grid-cols-1 sm:grid-cols-4 gap-3 text-xs font-mono">
+                <div className="p-2.5 bg-[#111622] rounded border border-gray-800">
+                  <span className="text-[10px] text-slate-500 block uppercase">Target Account</span>
+                  <span className="text-cyan-300 font-bold">acc_business_checking_9941</span>
+                </div>
+                <div className="p-2.5 bg-[#111622] rounded border border-gray-800">
+                  <span className="text-[10px] text-slate-500 block uppercase">Date Window (Present Day)</span>
+                  <span className="text-emerald-400 font-bold">2026-10-01 to 2026-10-29</span>
+                </div>
+                <div className="p-2.5 bg-[#111622] rounded border border-gray-800">
+                  <span className="text-[10px] text-slate-500 block uppercase">Enriched Categorization</span>
+                  <span className="text-amber-300 font-bold">personal_finance_category: true</span>
+                </div>
+                <div className="p-2.5 bg-[#111622] rounded border border-gray-800">
+                  <span className="text-[10px] text-slate-500 block uppercase">Pagination Cursor</span>
+                  <span className="text-slate-300 truncate block" title="eyJkaXJlY3Rpb24iOiJuZXh0Iiwib2Zmc2V0IjoyMH0=">
+                    offset: 20 (base64)
+                  </span>
+                </div>
+              </div>
+
+              {/* Code / cURL Block */}
+              <div className="bg-[#050810] p-3.5 rounded-lg border border-gray-800 font-mono text-xs overflow-x-auto text-slate-300 space-y-1">
+                <div className="text-gray-500 text-[11px] mb-1"># HTTP Request Specification (Configured for Present Day 10/29/2026)</div>
+                <div className="text-cyan-400 font-bold">POST /v1/transactions/sync HTTP/1.1</div>
+                <div><span className="text-slate-500">Host:</span> api.financial-institution.com</div>
+                <div><span className="text-slate-500">Authorization:</span> Bearer &lt;OAUTH2_ACCESS_TOKEN&gt;</div>
+                <div><span className="text-slate-500">Content-Type:</span> application/json</div>
+                <div><span className="text-slate-500">Accept:</span> application/json</div>
+                <div><span className="text-slate-500">X-Correlation-ID:</span> a1b2c3d4-e5f6-7890-abcd-ef0123456789</div>
+                <div className="pt-2 text-amber-300">
+                  {`{
+  "account_ids": [
+    "acc_business_checking_9941"
+  ],
+  "options": {
+    "include_pending": false,
+    "personal_finance_category": true
+  },
+  "cursor": "eyJkaXJlY3Rpb24iOiJuZXh0Iiwib2Zmc2V0IjoyMH0=",
+  "date_range": {
+    "start_date": "2026-10-01",
+    "end_date": "2026-10-29"
+  }
+}`}
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       )}
+
+      {/* Tab 6: XRPL Cryptographic Provenance & Signature Verifier */}
+      {activeTab === 'xrpl' && <XrplProvenanceAudit />}
+
+      {/* Square Web Payments SDK Cash App Pay Modal */}
+      <CashAppPayModal
+        isOpen={isCashAppModalOpen}
+        onClose={() => setIsCashAppModalOpen(false)}
+        defaultAmount={25.0}
+      />
     </div>
   );
 };

@@ -1,0 +1,37 @@
+{
+  "$schema": "https://metadata.core/schemas/transactions_sync_v1.json",
+  "endpoint": "/v1/transactions/sync",
+  "method": "POST",
+  "host": "api.financial-institution.com",
+  "timestamp_utc": "2026-10-29T18:39:24Z",
+  "headers": {
+    "Authorization": "Bearer <OAUTH2_ACCESS_TOKEN>",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+    "X-Correlation-ID": "a1b2c3d4-e5f6-7890-abcd-ef0123456789"
+  },
+  "request_body": {
+    "account_ids": [
+      "acc_business_checking_9941"
+    ],
+    "options": {
+      "include_pending": false,
+      "personal_finance_category": true
+    },
+    "cursor": "eyJkaXJlY3Rpb24iOiJuZXh0Iiwib2Zmc2V0IjoyMH0=",
+    "date_range": {
+      "start_date": "2026-10-01",
+      "end_date": "2026-10-29"
+    }
+  },
+  "metadata": {
+    "entity": "13 Aerospace Defense Company",
+    "owner": "Shawn Patrick Cooper Gardner (US-1)",
+    "purpose": "reconciliation_and_inbound_audit_sync",
+    "effective_date": "2026-10-29",
+    "provenance": {
+      "region": "US-West-4 (Nevada/Arizona)",
+      "integrity": "sha256_verified"
+    }
+  }
+}

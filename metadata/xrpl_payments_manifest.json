@@ -1,0 +1,35 @@
+{
+  "entity": "13 Aerospace Defense Company",
+  "owner": "Shawn Patrick Cooper Gardner (US-1)",
+  "project": "Super Project EXCALIBUR",
+  "module": "XRPL-PAYMENTS",
+  "architecture": "aarch64",
+  "runtime": "Node.js v24.17.0 (ESM)",
+  "sdk": "xrpl@^5.3.0",
+  "local_root": "~/13adCompany/XRPL-PAYMENTS",
+  "networks": {
+    "testnet": "wss://s.altnet.rippletest.net:51233",
+    "devnet": "wss://s.devnet.rippletest.net:51233",
+    "mainnet": "wss://xrplcluster.com"
+  },
+  "scripts": {
+    "start": "node index.js",
+    "test": "node --test",
+    "wallet:new": "node src/wallet-generate.js"
+  },
+  "submodules": [
+    "src/wallet-generate.js",
+    "src/wallet/walletManager.js",
+    "src/payments/paymentService.js",
+    "src/verification/txVerifier.js",
+    "config/default.js",
+    "evidence/",
+    "tests/payment.test.js"
+  ],
+  "provenance": {
+    "created_at": "2026-10-30T09:51:00-07:00",
+    "authority": "US-1-AUTHORITY",
+    "pec": "00711617",
+    "integrity": "sha256_verified"
+  }
+}

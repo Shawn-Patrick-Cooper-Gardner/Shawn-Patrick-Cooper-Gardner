@@ -28,7 +28,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-DATA_DIR = Path("./metadata_store")
+DATA_DIR = Path("./metadata")
 DATA_DIR.mkdir(exist_ok=True)
 
 class MetadataRecord(BaseModel):
@@ -45,7 +45,7 @@ async def root():
         "status": "ONLINE",
         "endpoints": [
             "POST /validate - Validates JSON artifact and outputs validation_v1.json report",
-            "POST /metadata - Stores metadata record in metadata_store",
+            "POST /metadata - Stores metadata record in metadata directory",
             "GET /metadata/{record_id} - Retrieves all stored metadata files for record_id",
             "GET /metadata - Lists all stored metadata records"
         ]
@@ -77,7 +77,7 @@ async def store_metadata(record: MetadataRecord):
 @app.post("/metadata/signed")
 async def store_signed_metadata(record: MetadataRecord):
     signed = signer.sign(record.payload)
-    path = f"metadata_store/{record.record_id}_{record.type}_signed.json"
+    path = DATA_DIR / f"{record.record_id}_{record.type}_signed.json"
     with open(path, "w") as f:
         f.write(json.dumps(signed, indent=2))
     return {"status": "signed", "record_id": record.record_id}

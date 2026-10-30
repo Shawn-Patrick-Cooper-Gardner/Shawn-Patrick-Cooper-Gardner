@@ -1555,7 +1555,7 @@ export const PayloadValidator: React.FC = () => {
       payload: parsedData,
     };
     setStoredRecords((prev) => [newRecord, ...prev.filter((r) => r.filename !== filename)]);
-    setCoreServiceNotice(`Record stored into metadata_store as ${filename}.`);
+    setCoreServiceNotice(`Record stored into metadata/ as ${filename}.`);
     setTimeout(() => setCoreServiceNotice(null), 4000);
   };
 
@@ -2171,7 +2171,7 @@ export const PayloadValidator: React.FC = () => {
                 </span>
               </div>
               <p className="text-xs text-gray-400 mt-0.5">
-                Authority: 13 Aerospace Defense Company / US-1-AUTHORITY · Super Project EXCALIBUR · Directory: ./metadata_store
+                Authority: 13 Aerospace Defense Company / US-1-AUTHORITY · Super Project EXCALIBUR · Directory: ./metadata
               </p>
             </div>
 
@@ -2250,7 +2250,7 @@ export const PayloadValidator: React.FC = () => {
                     onClick={handleStoreMetadataRecord}
                     disabled={!parsedData}
                     className="flex-1 px-3 py-1.5 bg-emerald-600 hover:bg-emerald-500 text-black font-bold uppercase tracking-wider rounded text-xs transition cursor-pointer flex items-center justify-center gap-1 shadow-md shadow-emerald-500/20 disabled:opacity-50"
-                    title="Store payload into ./metadata_store/{record_id}_{type}.json"
+                    title="Store payload into ./metadata/{record_id}_{type}.json"
                   >
                     <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3 3m0 0l-3-3m3 3V4" />
@@ -2262,7 +2262,7 @@ export const PayloadValidator: React.FC = () => {
                     onClick={handleSignWithKms}
                     disabled={!parsedData}
                     className="flex-1 px-3 py-1.5 bg-amber-500 hover:bg-amber-400 text-black font-bold uppercase tracking-wider rounded text-xs transition cursor-pointer flex items-center justify-center gap-1 shadow-md shadow-amber-500/20 disabled:opacity-50"
-                    title="Sign payload with AWS KMS RSASSA_PSS_SHA_256 and store as metadata_store/{record_id}_{type}_signed.json"
+                    title="Sign payload with AWS KMS RSASSA_PSS_SHA_256 and store as metadata/{record_id}_{type}_signed.json"
                   >
                     <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
@@ -2446,7 +2446,7 @@ export const PayloadValidator: React.FC = () => {
                       Query Stored Artifacts (GET /metadata/&#123;record_id&#125;)
                     </span>
                     <span className="text-[10px] text-gray-500">
-                      ({storedRecords.length} records in metadata_store)
+                      ({storedRecords.length} records in metadata/)
                     </span>
                   </div>
 

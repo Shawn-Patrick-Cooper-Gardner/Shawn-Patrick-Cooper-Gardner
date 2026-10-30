@@ -1,0 +1,28 @@
+{
+  "bomFormat": "CycloneDX",
+  "specVersion": "1.5",
+  "version": 1,
+  "metadata": {
+    "timestamp": "2026-10-29T18:29:21.992Z",
+    "component": {
+      "name": "super-project-excalibur-finance-services",
+      "version": "2.1.0",
+      "type": "application",
+      "supplier": {
+        "name": "13 Aerospace Defense Company"
+      }
+    }
+  },
+  "components": [
+    {
+      "name": "paypal-sdk-v6",
+      "version": "6.0.0",
+      "purl": "pkg:npm/@paypal/checkout-server-sdk@1.0.3"
+    },
+    {
+      "name": "core-geoint-service",
+      "version": "1.0.0",
+      "purl": "pkg:generic/13.geoint.core@2026.10.07"
+    }
+  ]
+}

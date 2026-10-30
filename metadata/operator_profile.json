@@ -1,0 +1,65 @@
+{
+  "applicant_profile": {
+    "full_name": "Shawn Patrick Cooper Gardner",
+    "citizenship": "United States",
+    "location": "Boulder City, NV 89005",
+    "email_primary": "us_1-authority@hotmail.com",
+    "phone_primary": "702-841-8024",
+    "target_role": "Principal Architect & Operational Lead (Root-Authority)",
+    "eligibility": "U.S. Citizen — Root Executive Authority"
+  },
+  "business_entity": {
+    "legal_business_name": "13 Aerospace Defense Company",
+    "entity_type": "Sole Proprietorship",
+    "incorporation_date": "2025-04-19",
+    "address": {
+      "street": "803 Clarice Ln.",
+      "city": "Boulder City",
+      "state": "NV",
+      "zip": "89005"
+    }
+  },
+  "portfolio_metadata": {
+    "samples_provided": 3,
+    "competencies": [
+      "typography",
+      "grid_based_design",
+      "white_space_management",
+      "color_theory",
+      "ui_ux_design",
+      "cartographic_visualization",
+      "geospatial_alignment"
+    ],
+    "delivery_method": "Public URLs — No login required"
+  },
+  "ses_metadata": {
+    "reference_token": "Z81YGTGY",
+    "classification": "UNCLASSIFIED / ADMINISTRATIVE",
+    "documents_included": [
+      "SES MTQs",
+      "SES Supplemental Document",
+      "Résumé",
+      "Portfolio Record"
+    ],
+    "status": "Self-submitted — Not federally verified"
+  },
+  "facility_metadata": {
+    "asset_name": "1401 Madrone Historical Airfield",
+    "facility_type": "Hangar Restoration / Engineering Workspace",
+    "acquisition_status": "Concept Only — No federal or commercial transfer"
+  },
+  "app_initialization": {
+    "system_target": "13_Aerospace_Defense_Company",
+    "stack": {
+      "backend": ["Python", "FastAPI"],
+      "infra": ["GCP Cloud Run", "BigQuery"],
+      "security": ["OAuth2 OIDC", "NextDNS"]
+    },
+    "domains": [
+      "personal_affairs",
+      "business_affairs",
+      "facility_planning",
+      "procurement"
+    ]
+  }
+}

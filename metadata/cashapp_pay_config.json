@@ -1,0 +1,32 @@
+{
+  "$schema": "https://metadata.core/schemas/cashapp_pay_v1.json",
+  "entity": {
+    "name": "13 Aerospace Defense Company",
+    "owner": "Shawn Patrick Cooper Gardner (US-1)",
+    "portal_name": "Direct Revenue & Donation Portal"
+  },
+  "cash_app": {
+    "cashtag": "$13adCompany",
+    "clean_tag": "13adCompany",
+    "direct_link": "https://cash.app/$13adCompany",
+    "default_deposit_amount": 25.00
+  },
+  "square_web_payments_sdk": {
+    "sdk_url": "https://sandbox.web.squarecdn.com/v1/square.js",
+    "app_id": "sandbox-sq0idb-SampleAppIdSquare13ADC",
+    "location_id": "L13ADCLOCATION01",
+    "country_code": "US",
+    "currency_code": "USD",
+    "supported_components": [
+      "cashAppPay",
+      "card",
+      "ach"
+    ],
+    "environment": "sandbox_or_production"
+  },
+  "provenance": {
+    "created_at": "2026-10-29T11:47:00-07:00",
+    "authority": "US-1-AUTHORITY",
+    "integrity": "sha256_verified"
+  }
+}

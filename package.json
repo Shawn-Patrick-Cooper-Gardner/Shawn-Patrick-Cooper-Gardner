@@ -7,13 +7,16 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "tsc --noEmit",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "test": "node --test",
+    "wallet:new": "node src/wallet-generate.js"
   },
   "dependencies": {
+    "@google/genai": "^1.20.0",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
-    "@google/genai": "^1.20.0",
-    "uuid": "^13.0.0"
+    "uuid": "^13.0.0",
+    "xrpl": "^5.3.0"
   },
   "devDependencies": {
     "@types/node": "^22.14.0",
@@ -22,4 +25,3 @@
     "vite": "^6.2.0"
   }
 }
-

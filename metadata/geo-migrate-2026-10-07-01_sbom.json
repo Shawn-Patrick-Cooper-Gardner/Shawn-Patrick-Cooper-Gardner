@@ -1,0 +1,62 @@
+{
+  "$schema": "https://metadata.core/sbom_v1.json",
+  "record_id": "geo-migrate-2026-10-07-01",
+  "project": "Super Project EXCALIBUR",
+  "target_device": "WHOOP TAB-8US2 (Android 11 / arm64-v8a)",
+  "components": [
+    {
+      "name": "com.squareup.okhttp3:okhttp",
+      "version": "4.12.0",
+      "license": "Apache-2.0",
+      "sha256": "4b68481ff173322f981e4db7b8e1f589998dfb158091176b92a2a07521074e50"
+    },
+    {
+      "name": "com.squareup.okhttp3:logging-interceptor",
+      "version": "4.12.0",
+      "license": "Apache-2.0",
+      "sha256": "9b1287e07bbba5427d2c3dfa996f0812e9b990db58872019409199aef59cb128"
+    },
+    {
+      "name": "com.squareup.moshi:moshi",
+      "version": "1.15.0",
+      "license": "Apache-2.0",
+      "sha256": "c88f3e30d12e10c7104b92b6a948299fb5810214ecaa53e990b7936a28290f91"
+    },
+    {
+      "name": "com.squareup.moshi:moshi-kotlin",
+      "version": "1.15.0",
+      "license": "Apache-2.0",
+      "sha256": "a3589b2190f8450123fa55b8821946892e88a3b509172083b482092109b83741"
+    },
+    {
+      "name": "androidx.lifecycle:lifecycle-viewmodel-ktx",
+      "version": "2.7.0",
+      "license": "Apache-2.0",
+      "sha256": "f512ec8198f6d354b3879a941bf2843efc609653a998bbd7fcf7c7c0062b1442"
+    },
+    {
+      "name": "13.geoint.core",
+      "version": "1.0.0",
+      "license": "PROPRIETARY-13ADC",
+      "sha256": "db2d4737f4f7342b20a5727a7320bacfcc98a8cf41926d9474c2e412b54dd44f"
+    },
+    {
+      "name": "fastapi",
+      "version": "0.115.0",
+      "license": "MIT",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "pydantic",
+      "version": "2.9.2",
+      "license": "MIT",
+      "sha256": "4a12ec8198f6d354b3879a941bf2843efc609653a998bbd7fcf7c7c0062b1442"
+    },
+    {
+      "name": "core-validator",
+      "version": "1.0.0",
+      "license": "BSD-3-Clause",
+      "sha256": "712cab29f6dea353014e33dec6473575cfd9f6589b0b86982dbda2ea6506337b"
+    }
+  ]
+}
