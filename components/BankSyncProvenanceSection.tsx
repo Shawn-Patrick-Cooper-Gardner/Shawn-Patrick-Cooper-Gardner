@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { CashAppPayModal } from './CashAppPayModal';
 import { XrplProvenanceAudit } from './XrplProvenanceAudit';
+import { MercuryKrakenGateway } from './MercuryKrakenGateway';
+import { ReconciliationDashboard } from './ReconciliationDashboard';
 
 export interface BankSyncAsset {
   platform: string;
@@ -56,7 +58,7 @@ export const V010_LINUX_ARM64 = {
 export const GEOINT_EXPECTED_HASH = 'db2d4737f4f7342b20a5727a7320bacfcc98a8cf41926d9474c2e412b54dd44f';
 
 export const BankSyncProvenanceSection: React.FC = () => {
-  const [activeTab, setActiveTab] = useState<'matrix' | 'ci_runner' | 'hasher' | 'terminal' | 'deposits' | 'xrpl'>('matrix');
+  const [activeTab, setActiveTab] = useState<'matrix' | 'ci_runner' | 'hasher' | 'terminal' | 'deposits' | 'mercury' | 'reconciliation' | 'xrpl'>('reconciliation');
   const [isProbing, setIsProbing] = useState<boolean>(false);
   const [probeStatus, setProbeStatus] = useState<string>('IDLE');
   const [probeResult, setProbeResult] = useState<BankSyncLatestMeta>(OFFICIAL_BANKSYNC_LATEST);
@@ -91,6 +93,11 @@ export const BankSyncProvenanceSection: React.FC = () => {
       name: 'Verify BankSync CLI v0.1.0 Linux ARM64 Checksum',
       status: 'success',
       log: `GET https://cdn.banksync.io/cli/v0.1.0/banksync-linux-arm64.sha256\nHTTP Status: 200 OK\nChecksum: ${V010_LINUX_ARM64.sha256}  banksync-linux-arm64\nSTATUS: VERIFIED BIT-FOR-BIT`,
+    },
+    {
+      name: 'Verify XRPL Keypair Signature & On-Chain Payment Provenance',
+      status: 'success',
+      log: 'Account: rDWZcFbBfQkySPR184EcLQGjP4buPy11An (100 XRP)\nChallenge: xrpl-auth-1793427389932-PGRW1IJB\nSignature: 12000324014F05F6... (Ed25519 Verified)\nPayment Hash: 74942973F9872164FA5FF5029D05E0C4C9C75012FFDB0C6A5EF5CC4F3A38AE7A\nLedger Index: 21956450 (10 XRP Transferred)\nSTATUS: BIT-FOR-BIT ON-CHAIN PROVENANCE CONFIRMED',
     },
   ]);
 
@@ -310,6 +317,30 @@ export const BankSyncProvenanceSection: React.FC = () => {
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z" />
           </svg>
           <span>Deposit & Banking Routing</span>
+        </button>
+
+        <button
+          onClick={() => setActiveTab('mercury')}
+          className={`px-4 py-2 rounded font-bold cursor-pointer transition flex items-center gap-2 ${
+            activeTab === 'mercury'
+              ? 'bg-gradient-to-r from-emerald-400 to-amber-400 text-black shadow-md shadow-emerald-500/20 font-black'
+              : 'bg-[#111622] text-emerald-400 hover:text-emerald-300 border border-emerald-900/60'
+          }`}
+        >
+          <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping" />
+          <span>Mercury Split ($500 $7OIL / $500 $13ad)</span>
+        </button>
+
+        <button
+          onClick={() => setActiveTab('reconciliation')}
+          className={`px-4 py-2 rounded font-bold cursor-pointer transition flex items-center gap-2 ${
+            activeTab === 'reconciliation'
+              ? 'bg-gradient-to-r from-emerald-400 via-teal-300 to-cyan-400 text-black shadow-md shadow-emerald-500/20 font-black'
+              : 'bg-[#111622] text-teal-300 hover:text-white border border-teal-800/60'
+          }`}
+        >
+          <span className="w-2 h-2 rounded-full bg-teal-400 animate-ping" />
+          <span>Reconciliation Dashboard (Mercury ⇄ Cash App ⇄ OTC)</span>
         </button>
 
         <button
@@ -660,6 +691,9 @@ echo "b17fbc8140310b9b2fc53a59dec9864d724ae6f939b7392d31f00de7628443cf  banksync
       {/* Tab 5: Inbound Deposit & Banking Direct Routing */}
       {activeTab === 'deposits' && (
         <div className="space-y-6">
+          {/* Priority Gateway: Mercury Automated Split & Kraken OTC Lock */}
+          <MercuryKrakenGateway />
+
           {/* Header Banner */}
           <div className="bg-[#111622] border border-emerald-500/40 rounded-xl p-6 shadow-xl shadow-emerald-950/20">
             <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 border-b border-gray-800 pb-4">
@@ -1079,6 +1113,12 @@ echo "b17fbc8140310b9b2fc53a59dec9864d724ae6f939b7392d31f00de7628443cf  banksync
           </div>
         </div>
       )}
+
+      {/* Tab: Mercury Split & Kraken OTC Gateway */}
+      {activeTab === 'mercury' && <MercuryKrakenGateway />}
+
+      {/* Tab: Reconciliation Dashboard (Mercury ⇄ Cash App ⇄ Kraken OTC) */}
+      {activeTab === 'reconciliation' && <ReconciliationDashboard />}
 
       {/* Tab 6: XRPL Cryptographic Provenance & Signature Verifier */}
       {activeTab === 'xrpl' && <XrplProvenanceAudit />}

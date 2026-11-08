@@ -9,10 +9,15 @@
     "lint": "tsc --noEmit",
     "preview": "vite preview",
     "test": "node --test",
-    "wallet:new": "node src/wallet-generate.js"
+    "account:check": "node src/check-account.js",
+    "payment:send": "node src/send-payment.js",
+    "wallet:generate": "node src/wallet-generate.js",
+    "wallet:new": "node src/wallet-generate.js",
+    "termux:status": "bash scripts/termux-status.sh"
   },
   "dependencies": {
     "@google/genai": "^1.20.0",
+    "firebase": "^13.2.0",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
     "uuid": "^13.0.0",

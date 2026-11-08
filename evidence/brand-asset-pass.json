@@ -1,0 +1,31 @@
+{
+  "suite": "XRPL Brand Desk Brand-Asset Pass",
+  "result": "PASS",
+  "verified_at": "2026-10-30T12:36:00-07:00",
+  "assets": {
+    "public/og.jpg": {
+      "dimensions": "1200x630",
+      "format": "JPEG",
+      "size_bytes": 17779,
+      "size_kb": 17.4,
+      "palette": ["#141414", "#00E599"],
+      "lockup": "XRPL / BRAND DESK",
+      "card_type": "custom"
+    },
+    "public/favicon.svg": {
+      "type": "image/svg+xml",
+      "mark": "brace-and-X",
+      "primary_color": "#00E599",
+      "background_color": "#141414",
+      "status": "VALIDATED"
+    },
+    "src/lib/og/site.json": {
+      "title": "XRPL Brand Desk",
+      "card": "custom",
+      "disallowed_og_type_present": false,
+      "disallowed_x_banner_present": false,
+      "status": "VALIDATED"
+    }
+  },
+  "script_exit_code": 0
+}

@@ -1,0 +1,50 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Default-deny all unmapped collections
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    function isValidId(id) {
+      return id is string && id.size() > 0 && id.size() <= 128 && id.matches('^[a-zA-Z0-9_\\-]+$');
+    }
+
+    function incoming() {
+      return request.resource.data;
+    }
+
+    function isValidCosponsorship(data) {
+      return data.keys().hasAll(['id', 'activityName', 'narrative', 'status'])
+        && data.id is string && data.id.size() <= 128
+        && data.activityName is string && data.activityName.size() <= 500
+        && data.narrative is string && data.narrative.size() <= 5000
+        && data.status is string && data.status.size() <= 64;
+    }
+
+    function isValidMercuryDispatch(data) {
+      return data.keys().hasAll(['id', 'businessName', 'bankProvider', 'totalAmount', 'status'])
+        && data.id is string && data.id.size() <= 128
+        && data.businessName is string && data.businessName.size() <= 200
+        && data.bankProvider is string && data.bankProvider.size() <= 100
+        && data.totalAmount is number && data.totalAmount >= 0
+        && data.status is string && data.status.size() <= 64;
+    }
+
+    // Title 13 CFR § 106.203 Cosponsorship Agreements
+    match /cosponsorship_agreements/{agreementId} {
+      allow read: if true;
+      allow create: if isValidId(agreementId) && isValidCosponsorship(incoming());
+      allow update: if isValidId(agreementId) && isValidCosponsorship(incoming());
+      allow delete: if false;
+    }
+
+    // Mercury Business Checking ACH/Wire Dispatches & Pre-Liquidation Records
+    match /mercury_dispatches/{dispatchId} {
+      allow read: if true;
+      allow create: if isValidId(dispatchId) && isValidMercuryDispatch(incoming());
+      allow update: if isValidId(dispatchId) && isValidMercuryDispatch(incoming());
+      allow delete: if false;
+    }
+  }
+}

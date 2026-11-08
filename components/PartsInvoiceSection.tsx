@@ -58,7 +58,7 @@ const PARTS_CATALOG: PartItem[] = [
     price: 1850.0,
     description: 'Complete planetary overhaul assembly: includes 24T Sun pinion, 4x 16T Cryo-treated planet gears, needle roller bearings, hardened carrier pins, and shims.',
     inStock: true,
-    leadTime: 'Immediate Paddock Dispatch',
+    leadTime: 'Immediate Company Off-road Racing Engineering Dispatch',
     paypalButtonId: 'BUTTON_ID_GBX_REBUILD',
   },
   {
@@ -105,6 +105,17 @@ const PARTS_CATALOG: PartItem[] = [
     leadTime: '24/7 Field Dispatch',
     paypalButtonId: 'BUTTON_ID_TOW_RECOVERY',
   },
+  {
+    id: 'part-rotary-mh55',
+    name: 'MH-55 Custom Rotary Heavy-Lift Tool Truck Hot-Pit Dispatch',
+    partNumber: '13ADC-ROTARY-MH55',
+    category: 'recovery',
+    price: 3250.0,
+    description: 'Direct airborne tactical tool truck response via MH-55 Custom Rotary. Bypasses truck-and-trailer ground redundancy; lands directly in desert dry lakes and washes with roll-out master tool chests, high-flow pneumatics, nitrogen bottles, and spare planetary gear assemblies.',
+    inStock: true,
+    leadTime: 'Immediate Airborne Rotary Dispatch',
+    paypalButtonId: 'BUTTON_ID_ROTARY_MH55',
+  },
 ];
 
 type CheckoutSubMode = 'sdk_checkout' | 'orders_v2_api' | 'oauth_auth' | 'low_code_button' | 'work_order_invoice';
@@ -119,7 +130,7 @@ export const PartsInvoiceSection: React.FC = () => {
   const [filterCategory, setFilterCategory] = useState<string>('all');
 
   // Custom Work Order / Invoice Generator
-  const [clientName, setClientName] = useState<string>('Desert Racing Paddock Team');
+  const [clientName, setClientName] = useState<string>('Company Off-road Racing Engineering Team');
   const [invoiceDesc, setInvoiceDesc] = useState<string>('Mojave Stage Emergency Planetary Gearbox Sump Flush & Tow Extraction');
   const [invoiceAmount, setInvoiceAmount] = useState<number>(1290.0);
   const [invoiceId, setInvoiceId] = useState<string>('INV-2026-0813-01');
@@ -570,14 +581,14 @@ export const PartsInvoiceSection: React.FC = () => {
           <div className="flex items-center gap-3">
             <span className="inline-block w-2.5 h-2.5 rounded-full bg-amber-400 animate-pulse" />
             <h1 className="font-['Barlow_Condensed',sans-serif] text-2xl font-black uppercase tracking-wider text-white">
-              C.O.R.E. SPEED PARTS & TOW INVOICING PORTAL
+              COMPANY OFF-ROAD RACING ENGINEERING (C.O.R.E.)
             </h1>
             <span className="font-mono text-xs px-2.5 py-0.5 rounded bg-amber-500/10 text-amber-300 font-bold uppercase border border-amber-500/30">
               PAYPAL V2 CHECKOUT ORDERS ACTIVE
             </span>
           </div>
           <p className="text-xs text-slate-400 font-mono mt-0.5">
-            13 Aerospace Defense Company · Direct Paddock Parts, Planetary Overhaul & Heavy Recovery Invoicing
+            13 Aerospace Defense Company · Direct Company Off-road Racing Engineering (C.O.R.E.) Parts, Planetary Overhaul & Heavy Recovery Invoicing
           </p>
         </div>
 
@@ -649,7 +660,7 @@ export const PartsInvoiceSection: React.FC = () => {
           <div className="bg-[#0B0F17] rounded-xl border border-white/10 p-5 shadow-2xl">
             <div className="flex flex-wrap items-center justify-between gap-3 mb-4 pb-3 border-b border-white/10">
               <span className="font-['Barlow_Condensed',sans-serif] text-lg font-bold uppercase tracking-wider text-amber-400">
-                Paddock Inventory & Heavy Tow Rates
+                Company Off-road Racing Engineering Inventory & Heavy Tow Rates
               </span>
               <div className="flex items-center gap-1.5 text-xs font-mono">
                 {['all', 'gearbox', 'seals', 'fluids', 'recovery'].map((cat) => (
@@ -810,7 +821,7 @@ export const PartsInvoiceSection: React.FC = () => {
                     </span>
                   </div>
                   <div className="text-[10px] text-slate-400 mt-0.5">
-                    Super Project EXCALIBUR · 13 Aerospace Defense Company · Direct Paddock Remittance
+                    Super Project EXCALIBUR · 13 Aerospace Defense Company · Direct Company Off-road Racing Engineering Remittance
                   </div>
                 </div>
                 <div className="flex items-center gap-1.5">
@@ -895,7 +906,7 @@ export const PartsInvoiceSection: React.FC = () => {
                     <span className="text-[10px] font-mono text-slate-400 block">SERVER-VALIDATED LINE ITEM:</span>
                     <span className="font-bold text-white text-sm">{selectedPart.name}</span>
                     <span className="text-[10px] font-mono text-cyan-400 block mt-0.5">
-                      SKU: {selectedPart.partNumber} · Paddock Dispatch Lead: {selectedPart.leadTime}
+                      SKU: {selectedPart.partNumber} · C.O.R.E. Dispatch Lead: {selectedPart.leadTime}
                     </span>
                   </div>
                   <div className="text-right shrink-0">
@@ -1994,7 +2005,7 @@ export const PartsInvoiceSection: React.FC = () => {
             <div className="bg-[#0B0F17] rounded-xl border border-white/10 p-5 shadow-2xl flex flex-col gap-4 font-mono text-xs">
               <div className="flex items-center justify-between pb-3 border-b border-white/10">
                 <span className="font-['Barlow_Condensed',sans-serif] text-lg font-bold uppercase tracking-wider text-white">
-                  Heavy Recovery Paddock Tow Order
+                  Heavy Recovery Company Off-road Racing Engineering Tow Order
                 </span>
                 <span className="text-amber-400 font-bold">{invoiceId}</span>
               </div>
@@ -2047,7 +2058,7 @@ export const PartsInvoiceSection: React.FC = () => {
               <div>
                 <div className="text-cyan-400 font-bold text-sm">13 AEROSPACE DEFENSE COMPANY</div>
                 <div className="text-lg font-bold font-['Barlow_Condensed',sans-serif] tracking-wider text-white">
-                  OFFICIAL PADDOCK WORK ORDER & TOW INVOICE
+                  OFFICIAL COMPANY OFF-ROAD RACING ENGINEERING WORK ORDER & TOW INVOICE
                 </div>
                 <div className="text-xs text-slate-400">Shawn Patrick Cooper Gardner (Sole Proprietor)</div>
               </div>

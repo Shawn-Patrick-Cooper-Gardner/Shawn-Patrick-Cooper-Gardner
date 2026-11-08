@@ -13,6 +13,7 @@ interface VehicleStageProps {
   isRevving: boolean;
   soundEnabled: boolean;
   onToggleSound: () => void;
+  onLaunchHeloScene?: () => void;
 }
 
 export const VehicleStage: React.FC<VehicleStageProps> = ({
@@ -26,16 +27,19 @@ export const VehicleStage: React.FC<VehicleStageProps> = ({
   isRevving,
   soundEnabled,
   onToggleSound,
+  onLaunchHeloScene,
 }) => {
   const [activeHotspot, setActiveHotspot] = useState<VehicleComponent | null>(null);
-  const [viewMode, setViewMode] = useState<'track' | 'paddock' | 'engine' | 'night'>('track');
+  const [viewMode, setViewMode] = useState<'track' | 'paddock' | 'engine' | 'night' | 'rotary_truck'>('track');
   const [lightbarActive, setLightbarActive] = useState<boolean>(true);
 
   const currentDisplayHp = vehicle.baseHp + tuningHpDelta;
 
   // Select image based on view mode
   const displayImage =
-    viewMode === 'night'
+    viewMode === 'rotary_truck'
+      ? '/src/assets/images/mh55_rotary_tool_truck.png'
+      : viewMode === 'night'
       ? '/src/assets/images/fastback_night_spotlight_1792219160104.jpg'
       : viewMode === 'paddock'
       ? '/src/assets/images/garage_desert_paddock_1792218543411.jpg'
@@ -132,7 +136,7 @@ export const VehicleStage: React.FC<VehicleStageProps> = ({
               viewMode === 'paddock' ? 'bg-amber-500 text-black shadow' : 'text-slate-300 hover:text-white'
             }`}
           >
-            Workshop Paddock
+            Company Off-road Racing Engineering
           </button>
           <button
             onClick={() => setViewMode('engine')}
@@ -141,6 +145,15 @@ export const VehicleStage: React.FC<VehicleStageProps> = ({
             }`}
           >
             Blower & Bay
+          </button>
+          <button
+            onClick={() => setViewMode('rotary_truck')}
+            className={`px-3 py-1.5 text-xs font-semibold uppercase tracking-wider rounded transition-colors cursor-pointer flex items-center gap-1.5 ${
+              viewMode === 'rotary_truck' ? 'bg-cyan-500 text-black shadow' : 'text-slate-300 hover:text-white'
+            }`}
+          >
+            <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse" />
+            <span>MH-55 Rotary Tool Truck</span>
           </button>
         </div>
 
@@ -239,6 +252,32 @@ export const VehicleStage: React.FC<VehicleStageProps> = ({
             Full Engineering Spec Sheet
           </button>
         </div>
+
+        {/* MH-55 Rotary Tool Truck Mode Info Bar */}
+        {viewMode === 'rotary_truck' && (
+          <div className="absolute bottom-4 left-4 right-4 z-20 bg-[#0B0F17]/95 backdrop-blur-md border border-cyan-500/50 rounded-xl p-3.5 text-xs font-mono text-slate-200 flex flex-col md:flex-row items-start md:items-center justify-between gap-3 shadow-2xl">
+            <div className="flex items-center gap-2">
+              <span className="w-2.5 h-2.5 rounded-full bg-cyan-400 animate-pulse" />
+              <span className="text-cyan-300 font-bold uppercase text-sm font-['Barlow_Condensed',sans-serif] tracking-wider">
+                MH®55 Tool Carrier #ooz (004)
+              </span>
+              <span className="px-2 py-0.5 rounded bg-amber-500/20 text-amber-300 border border-amber-500/40 text-[10px] font-bold">
+                C.O.R.E. AIRBORNE SERVICE
+              </span>
+            </div>
+            <div className="text-[11px] text-slate-300 leading-snug flex-1">
+              Direct dry-lake touchdown crewed by 3 female mechanics (blonde, brunette, red in gold, green, and red flight suits) with roll-out master tool chests &amp; high-flow pneumatics.
+            </div>
+            {onLaunchHeloScene && (
+              <button
+                onClick={onLaunchHeloScene}
+                className="px-3.5 py-1.5 rounded-lg bg-cyan-400 hover:bg-cyan-300 text-black font-bold text-xs uppercase tracking-wider transition-all cursor-pointer whitespace-nowrap shadow-lg shadow-cyan-500/20 flex items-center gap-1.5"
+              >
+                <span>Launch Airborne Workshop Console →</span>
+              </button>
+            )}
+          </div>
+        )}
       </div>
 
       {/* C.O.R.E. Real-World Engine Soundboard & Telemetry Console */}
@@ -252,7 +291,7 @@ export const VehicleStage: React.FC<VehicleStageProps> = ({
         <div className="text-xs font-mono uppercase tracking-wider text-slate-400">
           Select Garage Machine
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           {allVehicles.map((v) => {
             const isActive = v.id === vehicle.id;
             return (

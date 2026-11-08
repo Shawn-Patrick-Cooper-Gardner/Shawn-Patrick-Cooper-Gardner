@@ -3,6 +3,7 @@ import { OrderState } from '../services/paypalSdkService';
 
 export type GarageTab =
   | 'showcase'
+  | 'helo'
   | 'dyno'
   | 'tuning'
   | 'blueprints'
@@ -14,7 +15,8 @@ export type GarageTab =
   | 'banksync'
   | 'cartography'
   | 'heritage'
-  | 'proprietorship';
+  | 'proprietorship'
+  | 'title13';
 
 interface GarageHeaderProps {
   activeTab: GarageTab;
@@ -62,6 +64,17 @@ export const GarageHeader: React.FC<GarageHeaderProps> = ({
           }`}
         >
           Showcase
+        </button>
+        <button
+          onClick={() => onSelectTab('helo')}
+          className={`whitespace-nowrap transition-colors cursor-pointer py-1 flex items-center gap-1.5 ${
+            activeTab === 'helo'
+              ? 'text-cyan-400 border-b-2 border-cyan-400 font-semibold'
+              : 'text-cyan-400/80 hover:text-cyan-300'
+          }`}
+        >
+          <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse" />
+          <span>HeloRotary Pit (#004)</span>
         </button>
         <button
           onClick={() => onSelectTab('dyno')}
@@ -123,7 +136,7 @@ export const GarageHeader: React.FC<GarageHeaderProps> = ({
           }`}
         >
           <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
-          <span>Parts & Tow Invoicing</span>
+          <span>Company Off-road Racing Engineering</span>
         </button>
         <button
           onClick={() => onSelectTab('pittelemetry')}
@@ -147,14 +160,20 @@ export const GarageHeader: React.FC<GarageHeaderProps> = ({
         </button>
         <button
           onClick={() => onSelectTab('banksync')}
-          className={`whitespace-nowrap transition-colors cursor-pointer py-1 flex items-center gap-1 ${
+          className={`whitespace-nowrap transition-all duration-300 cursor-pointer py-1 px-2.5 rounded-lg flex items-center gap-2 relative group ${
             activeTab === 'banksync'
-              ? 'text-cyan-400 border-b-2 border-cyan-400 font-semibold'
-              : 'text-slate-400 hover:text-cyan-300'
+              ? 'text-cyan-300 bg-cyan-950/50 border border-cyan-500/60 shadow-[0_0_15px_rgba(6,182,212,0.35)] font-semibold'
+              : 'text-slate-300 hover:text-cyan-300 hover:bg-cyan-950/30 border border-cyan-500/20 shadow-[0_0_8px_rgba(6,182,212,0.15)]'
           }`}
         >
-          <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse" />
-          <span>BankSync & CI Provenance</span>
+          <span className="relative flex h-2 w-2">
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75" />
+            <span className="relative inline-flex rounded-full h-2 w-2 bg-cyan-400 shadow-[0_0_6px_#22d3ee]" />
+          </span>
+          <span>BankSync &amp; CI</span>
+          <span className="text-[9px] px-1 py-0.2 rounded bg-cyan-500/20 text-cyan-300 font-mono border border-cyan-500/40 font-bold uppercase tracking-wider animate-pulse">
+            LIVE
+          </span>
         </button>
         <button
           onClick={() => onSelectTab('cartography')}
@@ -164,7 +183,7 @@ export const GarageHeader: React.FC<GarageHeaderProps> = ({
               : 'text-slate-400 hover:text-white'
           }`}
         >
-          GIS & Coordinates
+          GIS &amp; Coordinates
         </button>
         <button
           onClick={() => onSelectTab('heritage')}
@@ -178,14 +197,37 @@ export const GarageHeader: React.FC<GarageHeaderProps> = ({
         </button>
         <button
           onClick={() => onSelectTab('proprietorship')}
-          className={`whitespace-nowrap transition-all cursor-pointer py-1 px-2 rounded flex items-center gap-1.5 ${
+          className={`whitespace-nowrap transition-all duration-300 cursor-pointer py-1 px-2.5 rounded-lg flex items-center gap-2 relative group ${
             activeTab === 'proprietorship'
-              ? 'bg-amber-400/20 text-amber-300 border-b-2 border-amber-400 font-bold'
-              : 'text-amber-400/80 hover:text-amber-300 hover:bg-amber-400/10'
+              ? 'bg-amber-400/20 text-amber-300 border border-amber-400/70 shadow-[0_0_18px_rgba(251,191,36,0.4)] font-bold'
+              : 'text-amber-300/90 hover:text-amber-200 hover:bg-amber-400/10 border border-amber-500/30 shadow-[0_0_8px_rgba(251,191,36,0.15)]'
           }`}
         >
-          <span className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse" />
-          <span>Proprietorship & Defense</span>
+          <span className="relative flex h-2 w-2">
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-80" />
+            <span className="relative inline-flex rounded-full h-2 w-2 bg-amber-400 shadow-[0_0_8px_#fbbf24]" />
+          </span>
+          <span>Proprietorship</span>
+          <span className="text-[9px] px-1.5 py-0.2 rounded bg-amber-500/20 text-amber-300 font-mono border border-amber-500/40 font-bold uppercase tracking-wider animate-pulse">
+            READY
+          </span>
+        </button>
+        <button
+          onClick={() => onSelectTab('title13')}
+          className={`whitespace-nowrap transition-all duration-300 cursor-pointer py-1 px-2.5 rounded-lg flex items-center gap-2 relative group ${
+            activeTab === 'title13'
+              ? 'bg-emerald-500/20 text-emerald-300 border border-emerald-400/70 shadow-[0_0_18px_rgba(16,185,129,0.4)] font-bold'
+              : 'text-emerald-400/90 hover:text-emerald-300 hover:bg-emerald-500/10 border border-emerald-500/30 shadow-[0_0_8px_rgba(16,185,129,0.15)]'
+          }`}
+        >
+          <span className="relative flex h-2 w-2">
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-80" />
+            <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-400 shadow-[0_0_8px_#34d399]" />
+          </span>
+          <span>Title 13 Capital</span>
+          <span className="text-[9px] px-1.5 py-0.2 rounded bg-emerald-500/20 text-emerald-300 font-mono border border-emerald-500/40 font-bold uppercase tracking-wider">
+            $7M+
+          </span>
         </button>
       </nav>
 

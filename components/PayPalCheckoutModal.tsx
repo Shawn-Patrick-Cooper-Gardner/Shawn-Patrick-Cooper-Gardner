@@ -75,7 +75,7 @@ export const PayPalCheckoutModal: React.FC<PayPalCheckoutModalProps> = ({
   checkServerStatus,
   resetOrder,
 }) => {
-  const [customerRef, setCustomerRef] = useState<string>('Paddock Race Lead #13');
+  const [customerRef, setCustomerRef] = useState<string>('Company Off-road Racing Engineering Lead #13');
   const [sdkRenderStatus, setSdkRenderStatus] = useState<'IDLE' | 'LOADING' | 'READY' | 'ERROR'>('IDLE');
   const [simulationInProgress, setSimulationInProgress] = useState<boolean>(false);
   const [localFeedback, setLocalFeedback] = useState<string | null>(null);
@@ -272,7 +272,7 @@ export const PayPalCheckoutModal: React.FC<PayPalCheckoutModalProps> = ({
                 </span>
               </div>
               <p className="text-[11px] text-slate-400 font-mono">
-                13 Aerospace Defense Company · Direct Paddock Remittance & Parts Escrow
+                13 Aerospace Defense Company · Direct Company Off-road Racing Engineering Remittance & Parts Escrow
               </p>
             </div>
           </div>

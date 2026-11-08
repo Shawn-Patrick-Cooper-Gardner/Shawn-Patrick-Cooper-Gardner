@@ -102,7 +102,7 @@ export const BlueprintGallery: React.FC = () => {
       dimensions: 'Blower Clearance: 9.5" · Lift: +6" over stock · 39" Cooper Tires',
       description: 'Iconic 1970 Mustang Fastback transformed with aggressive long-travel IFS, front tube bumper with KC daylighters, and protruding 8-71 Roots blower scoop.',
       imageUrl: '/src/assets/images/fastback_desert_runner_1792218566826.jpg',
-      date: 'Concept Phase 1 · Nevada Paddock Build',
+      date: 'Concept Phase 1 · Nevada C.O.R.E. Build',
     },
     {
       id: 'art-2',
@@ -126,13 +126,23 @@ export const BlueprintGallery: React.FC = () => {
     },
     {
       id: 'art-4',
-      title: 'Desert Paddock Workshop at Dusk',
+      title: 'Company Off-road Racing Engineering Workshop at Dusk',
       series: 'Pit Operations & Fabrication Bay',
       technique: 'Atmospheric Environmental Concept Art',
-      dimensions: 'Mojave Desert Basin Foothills · Worklight Paddock',
+      dimensions: 'Mojave Desert Basin Foothills · Worklight Workshop',
       description: 'The creative and mechanical sanctuary where builds are torqued, valved, and tested before desert trail runs.',
       imageUrl: '/src/assets/images/garage_desert_paddock_1792218543411.jpg',
-      date: 'Base Paddock HQ',
+      date: 'Base C.O.R.E. HQ',
+    },
+    {
+      id: 'art-5',
+      title: 'MH®55 Tool Carrier #ooz (004) HeloRotary Workshop',
+      series: 'Company Off-road Racing Engineering (C.O.R.E.) Heavy Aerial Support',
+      technique: 'Tactical Heavy-Lift Rotary Conversion & Ramp-Deployed Mobile Pit Station',
+      dimensions: "Rotor Span: 72' · Internal Cargo: 30' x 7.5' · Roll-Out Master Chest & Pneumatics",
+      description: 'HeloRotary Superiority platform #ooz (004) eliminating truck-and-trailer redundancy. Touches down directly in desert dry lakebeds with rolling master tool chests and 3 specialized female flight technicians (brunette in green suit on beadlock torque, redhead in red suit on rapid fuel & stage comms, blonde in gold suit on high-flow pneumatics).',
+      imageUrl: '/src/assets/images/mh55_rotary_tool_truck.png',
+      date: 'Active Deployment · Callsign #ooz (004)',
     },
   ];
 

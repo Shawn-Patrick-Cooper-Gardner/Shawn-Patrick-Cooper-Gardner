@@ -1,0 +1,122 @@
+{
+  "entities": {
+    "cosponsorshipAgreement": {
+      "title": "CosponsorshipAgreement",
+      "description": "SBA Title 13 CFR § 106.203 required cosponsorship agreement between SBA and 13 Aerospace Defence Company",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier of the cosponsorship agreement"
+        },
+        "activityName": {
+          "type": "string",
+          "description": "Title and operational description of the cosponsored activity"
+        },
+        "narrative": {
+          "type": "string",
+          "description": "Narrative description of the cosponsored activity per § 106.203(b)"
+        },
+        "status": {
+          "type": "string",
+          "description": "Current lifecycle status of the agreement"
+        },
+        "agreedToProvisions": {
+          "type": "boolean",
+          "description": "Certification agreeing to abide by § 106.100 and Subpart B per § 106.203(a)"
+        },
+        "nonProfitStatement": {
+          "type": "boolean",
+          "description": "Certification that cosponsor will not make a profit per § 106.203(e)"
+        },
+        "participantFeesClause": {
+          "type": "boolean",
+          "description": "Certification that participant fees do not exceed direct costs and liquidate first per § 106.203(f)"
+        },
+        "totalBudget": {
+          "type": "number",
+          "description": "Total estimated budget demonstrating contributions and expenses per § 106.203(d)"
+        },
+        "owner": {
+          "type": "string",
+          "description": "Shawn Patrick Cooper Gardner (US-1 Authority)"
+        },
+        "timestamp": {
+          "type": "string",
+          "description": "ISO timestamp of execution"
+        }
+      },
+      "required": ["id", "activityName", "narrative", "status"]
+    },
+    "mercuryDispatch": {
+      "title": "MercuryDispatch",
+      "description": "Mercury Business Checking automatic deposit dispatch to $7OIL and $13adCompany prior to Kraken OTC liquidation",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique dispatch transaction record identifier"
+        },
+        "businessName": {
+          "type": "string",
+          "description": "13 Aerospace Defence Company"
+        },
+        "bankProvider": {
+          "type": "string",
+          "description": "Mercury"
+        },
+        "accountType": {
+          "type": "string",
+          "description": "Business Checking"
+        },
+        "target1Tag": {
+          "type": "string",
+          "description": "$7OIL active fuel/oil operations account"
+        },
+        "target1Amount": {
+          "type": "number",
+          "description": "500.00 USD"
+        },
+        "target2Tag": {
+          "type": "string",
+          "description": "$13adCompany active corporate cash app"
+        },
+        "target2Amount": {
+          "type": "number",
+          "description": "500.00 USD"
+        },
+        "totalAmount": {
+          "type": "number",
+          "description": "1000.00 USD"
+        },
+        "status": {
+          "type": "string",
+          "description": "STAGED | DISPATCHED | VERIFIED | COMPLETED"
+        },
+        "krakenOtcPreLiquidationLock": {
+          "type": "boolean",
+          "description": "Whether deposit verification is required prior to Kraken OTC liquidation"
+        },
+        "traceId": {
+          "type": "string",
+          "description": "ACH / Wire electronic trace sequence"
+        },
+        "timestamp": {
+          "type": "string",
+          "description": "Execution timestamp"
+        }
+      },
+      "required": ["id", "businessName", "bankProvider", "totalAmount", "status"]
+    }
+  },
+  "firestore": {
+    "/cosponsorship_agreements/{agreementId}": {
+      "schema": "cosponsorshipAgreement",
+      "description": "Stores formal Title 13 CFR § 106.203 cosponsorship agreement records"
+    },
+    "/mercury_dispatches/{dispatchId}": {
+      "schema": "mercuryDispatch",
+      "description": "Stores Mercury automatic deposit dispatch audit records and OTC pre-liquidation logs"
+    }
+  }
+}

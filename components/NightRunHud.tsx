@@ -434,7 +434,7 @@ export const NightRunHud: React.FC<NightRunHudProps> = ({ vehicle, onNavigatePla
                     : 'bg-white/5 text-slate-300 hover:bg-white/10'
                 }`}
               >
-                DAYLIGHT PADDOCK
+                DAYLIGHT C.O.R.E. WORKSHOP
               </button>
               <button
                 onClick={() => setLighting('twilight')}

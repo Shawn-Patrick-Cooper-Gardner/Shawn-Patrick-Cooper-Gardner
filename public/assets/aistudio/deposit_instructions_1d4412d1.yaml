@@ -1,0 +1,29 @@
+value: "USE EXACT NAME SHOWN BY MERCURY"payment_account:
+  business_name: "13 Aerospace Defence Company"
+  account_type: "Business Checking"
+  bank_provider: "Mercury"
+  payment_methods:
+    - ACH
+    - Domestic Wire
+
+  account_holder_name:
+    value: "USE EXACT NAME SHOWN BY MERCURY"
+    status: "VERIFY"
+
+  account_number:
+    value: "REDACTED"
+    status: "ENTER ONLY IN SECURE LOCAL STORAGE"
+
+  routing_number:
+    value: "REDACTED"
+    status: "ENTER ONLY IN SECURE LOCAL STORAGE"
+
+  partner_bank:
+    value: "USE EXACT PARTNER BANK SHOWN BY MERCURY"
+    status: "VERIFY"
+
+verification:
+  source: "Mercury Dashboard > Accounts > Business Checking > Account Details"
+  bank_letter_available: true
+  credentials_stored: false
+  security_codes_stored: false

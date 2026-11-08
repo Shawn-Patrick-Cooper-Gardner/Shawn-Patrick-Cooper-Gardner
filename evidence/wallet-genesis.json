@@ -1,0 +1,16 @@
+{
+  "event": "XRPL_TESTNET_GENESIS",
+  "authority": "US-1-AUTHORITY",
+  "entity": "13 Aerospace Defense Company",
+  "project": "Super Project EXCALIBUR",
+  "timestamp": "2026-10-30T12:43:00-07:00",
+  "network": "wss://s.altnet.rippletest.net:51233",
+  "wallet": {
+    "classicAddress": "r3HvAPozvyDGEwgCcVexR4vDr34zCWcxMa",
+    "publicKey": "ED89B8559101212D84E14EEFD4C0ABA93DBC544893BDF92743FF7526A124523DEB",
+    "seed": "sEdVDp9gTyjdyUEcEx66i1ftcNwpssQ",
+    "initialBalanceDrops": "100000000",
+    "initialBalanceXRP": 100
+  },
+  "verification_status": "FAUCET_FUNDED_AND_CONFIRMED"
+}

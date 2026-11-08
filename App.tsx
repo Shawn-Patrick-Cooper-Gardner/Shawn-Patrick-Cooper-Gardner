@@ -14,6 +14,8 @@ import { RaceHeritage } from './components/RaceHeritage';
 import { ProprietorshipPortal } from './components/ProprietorshipPortal';
 import { PlanetaryMaintenance } from './components/PlanetaryMaintenance';
 import { PartsInvoiceSection } from './components/PartsInvoiceSection';
+import { HeloScene } from './components/HeloScene';
+import { Title13FundingPortal } from './components/Title13FundingPortal';
 import { SpecSheetModal } from './components/SpecSheetModal';
 import { GeminiQrModal } from './components/GeminiQrModal';
 import { PayPalCheckoutModal, CheckoutCatalogItem } from './components/PayPalCheckoutModal';
@@ -37,7 +39,7 @@ export const App: React.FC = () => {
     name: 'C.O.R.E. 3.33:1 Epicyclic Planetary Overhaul Kit',
     price: 1850.0,
     description: 'Complete severe-duty epicyclic planetary overhaul kit: 24T Sun pinion, 4x 16T Cryo planets, needle bearings, carrier pins & high-temp Viton seals.',
-    leadTime: 'Immediate Paddock Dispatch',
+    leadTime: 'Immediate Company Off-road Racing Engineering Dispatch',
     category: 'PHYSICAL_GOODS',
   });
 
@@ -144,6 +146,15 @@ export const App: React.FC = () => {
           Showcase
         </button>
         <button
+          onClick={() => setActiveTab('helo')}
+          className={`px-3 py-1 rounded whitespace-nowrap cursor-pointer flex items-center gap-1 ${
+            activeTab === 'helo' ? 'bg-cyan-400 text-black font-bold' : 'text-cyan-300 bg-cyan-500/10 border border-cyan-500/30'
+          }`}
+        >
+          <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse" />
+          <span>Helo Pit (#004)</span>
+        </button>
+        <button
           onClick={() => setActiveTab('dyno')}
           className={`px-3 py-1 rounded whitespace-nowrap cursor-pointer ${
             activeTab === 'dyno' ? 'bg-amber-400 text-black font-bold' : 'text-slate-400 bg-white/5'
@@ -209,12 +220,17 @@ export const App: React.FC = () => {
         </button>
         <button
           onClick={() => setActiveTab('banksync')}
-          className={`px-3 py-1 rounded whitespace-nowrap cursor-pointer flex items-center gap-1.5 ${
-            activeTab === 'banksync' ? 'bg-cyan-400 text-black font-bold' : 'text-cyan-300 bg-cyan-500/10 border border-cyan-500/30'
+          className={`px-3 py-1 rounded whitespace-nowrap cursor-pointer flex items-center gap-1.5 transition-all ${
+            activeTab === 'banksync'
+              ? 'bg-cyan-400 text-black font-bold shadow-[0_0_12px_rgba(6,182,212,0.4)]'
+              : 'text-cyan-300 bg-cyan-500/10 border border-cyan-500/30'
           }`}
         >
-          <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse" />
-          <span>BankSync & CI</span>
+          <span className="relative flex h-1.5 w-1.5">
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75" />
+            <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-cyan-400" />
+          </span>
+          <span>BankSync &amp; CI</span>
         </button>
         <button
           onClick={() => setActiveTab('cartography')}
@@ -222,7 +238,7 @@ export const App: React.FC = () => {
             activeTab === 'cartography' ? 'bg-cyan-400 text-black font-bold' : 'text-slate-400 bg-white/5'
           }`}
         >
-          GIS & Map
+          GIS &amp; Map
         </button>
         <button
           onClick={() => setActiveTab('heritage')}
@@ -234,12 +250,31 @@ export const App: React.FC = () => {
         </button>
         <button
           onClick={() => setActiveTab('proprietorship')}
-          className={`px-3 py-1 rounded whitespace-nowrap cursor-pointer flex items-center gap-1.5 ${
-            activeTab === 'proprietorship' ? 'bg-amber-400 text-black font-bold' : 'text-amber-300 bg-amber-500/10 border border-amber-500/30'
+          className={`px-3 py-1 rounded whitespace-nowrap cursor-pointer flex items-center gap-1.5 transition-all ${
+            activeTab === 'proprietorship'
+              ? 'bg-amber-400 text-black font-bold shadow-[0_0_12px_rgba(251,191,36,0.4)]'
+              : 'text-amber-300 bg-amber-500/10 border border-amber-500/30'
           }`}
         >
-          <span className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse" />
+          <span className="relative flex h-1.5 w-1.5">
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-80" />
+            <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-amber-400" />
+          </span>
           <span>Proprietorship</span>
+        </button>
+        <button
+          onClick={() => setActiveTab('title13')}
+          className={`px-3 py-1 rounded whitespace-nowrap cursor-pointer flex items-center gap-1.5 transition-all ${
+            activeTab === 'title13'
+              ? 'bg-emerald-400 text-black font-bold shadow-[0_0_12px_rgba(16,185,129,0.4)]'
+              : 'text-emerald-300 bg-emerald-500/10 border border-emerald-500/30'
+          }`}
+        >
+          <span className="relative flex h-1.5 w-1.5">
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-80" />
+            <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-emerald-400" />
+          </span>
+          <span>Title 13 Capital ($7M+)</span>
         </button>
       </div>
 
@@ -257,7 +292,12 @@ export const App: React.FC = () => {
             isRevving={isRevving}
             soundEnabled={soundEnabled}
             onToggleSound={handleToggleSound}
+            onLaunchHeloScene={() => setActiveTab('helo')}
           />
+        )}
+
+        {activeTab === 'helo' && (
+          <HeloScene soundEnabled={soundEnabled} />
         )}
 
         {activeTab === 'dyno' && (
@@ -299,10 +339,9 @@ export const App: React.FC = () => {
         {activeTab === 'banksync' && <BankSyncProvenanceSection />}
 
         {activeTab === 'cartography' && <CartographyHelper />}
-
         {activeTab === 'heritage' && <RaceHeritage />}
-
         {activeTab === 'proprietorship' && <ProprietorshipPortal />}
+        {activeTab === 'title13' && <Title13FundingPortal />}
       </main>
 
       {/* Spec Sheet & Build Customizer Modal */}
@@ -354,7 +393,7 @@ export const App: React.FC = () => {
           <span>ATO PEC SL USA 00711617</span>
         </div>
         <div className="text-slate-400 text-center md:text-right">
-          Super Project EXCALIBUR · Community Defense Futures & C.O.R.E. Paddock
+          Super Project EXCALIBUR · Community Defense Futures & Company Off-road Racing Engineering (C.O.R.E.)
         </div>
       </footer>
     </div>

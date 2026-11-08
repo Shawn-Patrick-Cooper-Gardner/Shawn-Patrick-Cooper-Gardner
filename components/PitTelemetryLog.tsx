@@ -112,7 +112,7 @@ export const PitTelemetryLog: React.FC<PitTelemetryLogProps> = ({ vehicle }) => 
     },
     {
       id: 5,
-      name: 'Mojave Main Paddock & Finish',
+      name: 'Mojave Main C.O.R.E. Base & Finish',
       distance: '118.0 - 145.0 MI',
       targetSplit: '22:10.0',
       actualSplit: '--:--',

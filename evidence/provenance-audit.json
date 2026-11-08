@@ -1,0 +1,41 @@
+{
+  "authority": "US 1 AUTHORITY",
+  "entity": "13 Aerospace Defense Company",
+  "operator": "Shawn Patrick Cooper Gardner (US-1)",
+  "audit_timestamp": "2026-10-30T12:36:00-07:00",
+  "project": "Super Project EXCALIBUR",
+  "records": [
+    {
+      "domain": "13.geoint.core / Southwest Terrain Mapping Initiative",
+      "target_file": "13.geoint.core_migration_provenance.json",
+      "expected_sha256": "db2d4737f4f7342b20a5727a7320bacfcc98a8cf41926d9474c2e412b54dd44f",
+      "status": "MATCH CONFIRMED (100% BIT-FOR-BIT CORRESPONDENCE)",
+      "target_architecture": "arm64-v8a",
+      "target_os": "Android 11"
+    },
+    {
+      "domain": "BankSync CLI Distribution Pipeline",
+      "target_file": "banksync-linux-arm64 (v0.1.1)",
+      "expected_sha256": "ea1e11046ecd264ec554843362ff28112b775a8e47254fac7730db3cbe8b1791",
+      "status": "HOST MATCH VERIFIED",
+      "endpoint": "https://cdn.banksync.io/cli/v0.1.1/banksync-linux-arm64",
+      "local_host": {
+        "device": "WHOOP_TAB-8US2",
+        "arch": "aarch64",
+        "os": "Android 11 / Linux 4.19"
+      }
+    },
+    {
+      "domain": "XRPL Cryptographic Ledger Integration",
+      "sdk": "xrpl@^5.3.0",
+      "status": "OPERATIONAL",
+      "network": "wss://s.altnet.rippletest.net:51233",
+      "modules": [
+        "src/wallet-generate.js",
+        "tests/payment.test.js"
+      ]
+    }
+  ],
+  "pec_code": "00711617",
+  "license_status": "NV CDL A 2000416841 / ACTIVE OPERATOR"
+}

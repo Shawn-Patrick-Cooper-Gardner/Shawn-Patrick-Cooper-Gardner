@@ -225,7 +225,7 @@ ${vehicle.enduranceRaces.map((r) => `- ${r}`).join('\n')}
                 onClick={() => {
                   onCommissionBuild({
                     sku: `13ADC-BUILD-${vehicle.raceNumber}`,
-                    name: `${vehicle.name} Custom Paddock Race Build`,
+                    name: `${vehicle.name} Custom Company Off-road Racing Engineering Build`,
                     price: 2850.0,
                     description: `Custom race commissioning docket for #${vehicle.raceNumber} (${teamName}). Calibrated ${tunedHp} BHP @ ${tuning.boostPsi} PSI boost, 4340 billet planetary transfer, race fuel mapping.`,
                   });

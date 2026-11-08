@@ -1,8 +1,9 @@
 import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import { VEHICLES } from '../data/vehicles';
 import { NevadaComplianceRegister } from './NevadaComplianceRegister';
+import { Title13FundingPortal } from './Title13FundingPortal';
 
-export type PortalSection = 'overview' | 'advertising' | 'community_defense' | 'dossier_generator' | 'credentials' | 'compliance';
+export type PortalSection = 'overview' | 'advertising' | 'community_defense' | 'dossier_generator' | 'credentials' | 'compliance' | 'title13_funding';
 
 interface SponsorshipTier {
   id: string;
@@ -37,7 +38,7 @@ const SPONSORSHIP_TIERS: SponsorshipTier[] = [
   },
   {
     id: 'tier-paddock',
-    name: 'C.O.R.E. Technical Paddock Sponsor',
+    name: 'Company Off-road Racing Engineering Sponsor',
     badge: 'MOTORSPORT & ENGINEERING',
     investmentRange: '$20,000 – $45,000',
     summary: 'High-visibility technical partnership showcasing component durability and mechanical dominance in premier desert races.',
@@ -45,7 +46,7 @@ const SPONSORSHIP_TIERS: SponsorshipTier[] = [
       'Prominent placement on Fastback #13 & Trophy Spec #77 (Roof Light Bar Visor & Rocker Panels)',
       'Dyno Bench & Telemetry HUD dedicated sponsor banner with real-time sensor data telemetry feed',
       'Co-branded technical case study distributed to aerospace, defense, and off-road engineering circles',
-      'VIP Paddock and Pit Access at the Mint 400 and Vegas to Reno for executive leadership',
+      'VIP Company Off-road Racing Engineering and Pit Access at the Mint 400 and Vegas to Reno for executive leadership',
     ],
     defenseImpact: 'Funds severe-duty drivetrain testing that validates extreme-temperature components for emergency fleet vehicles.',
     targetStakeholder: 'Automotive aftermarket manufacturers, tooling brands, advanced alloy suppliers, and high-performance lubricants.',
@@ -494,6 +495,17 @@ PROVENANCE DIGEST (SHA-256):
         >
           NV Regulatory Claim Register
         </button>
+        <button
+          onClick={() => setActiveSection('title13_funding')}
+          className={`px-4 py-2 rounded-lg transition-all cursor-pointer whitespace-nowrap flex items-center gap-1.5 ${
+            activeSection === 'title13_funding'
+              ? 'bg-emerald-400 text-black font-bold shadow'
+              : 'text-emerald-400/80 hover:text-emerald-300 bg-emerald-950/20 border border-emerald-500/30'
+          }`}
+        >
+          <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+          <span>Title 13 Business Credit &amp; Grants ($7M+)</span>
+        </button>
       </div>
 
       {/* SECTION 1: EXECUTIVE OVERVIEW */}
@@ -783,12 +795,12 @@ PROVENANCE DIGEST (SHA-256):
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               <div className="bg-black/40 border border-white/5 rounded-lg p-5 space-y-3">
                 <div className="text-sm font-bold font-mono text-amber-400 uppercase">
-                  1. Race Paddock & Livery
+                  1. Company Off-road Racing Engineering & Livery
                 </div>
                 <ul className="text-xs text-slate-300 space-y-2">
                   <li>• High-resolution vinyl livery on competition vehicles</li>
                   <li>• Pit crew fire suits & technical support truck wraps</li>
-                  <li>• VIP hospitality paddock banners in the Mojave Basin</li>
+                  <li>• VIP hospitality banners in the Mojave Basin</li>
                   <li>• Post-race display runs and public car showcases</li>
                 </ul>
               </div>
@@ -1233,6 +1245,9 @@ PROVENANCE DIGEST (SHA-256):
 
       {/* SECTION 6: NEVADA REGULATORY CLAIM REGISTER & STATUTORY CONTROLS */}
       {activeSection === 'compliance' && <NevadaComplianceRegister />}
+
+      {/* SECTION 7: TITLE 13 CFR BUSINESS CREDIT & DEFENSE GRANTS */}
+      {activeSection === 'title13_funding' && <Title13FundingPortal />}
     </div>
   );
 };
